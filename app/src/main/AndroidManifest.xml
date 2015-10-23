@@ -16,9 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BUOCActivity" />
-        <activity android:name=".AboutAppActivity"/>
-        <activity android:name=".SupportActivity"/>
+        <activity android:name=".BUOCActivity"
+            android:label="BUOC"/>
+
+        <activity android:name=".AboutAppActivity"
+            android:label="About Application"/>
+
+        <activity android:name=".SupportActivity"
+            android:label="Support"/>
     </application>
 
 </manifest>
