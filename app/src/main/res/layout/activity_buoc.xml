@@ -19,6 +19,16 @@
         android:layout_width="50dp"
         android:layout_height="125dp"
         android:background="@color/bed_background"
-        android:onClick="redirectToBedOneOptions"/>
+        android:onClick="redirectToBedOneOptions"
+        android:text="1"
+        android:textColor="@color/text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/center_button"
+        android:onClick="redirectToAddNewNoteActivity"
+        android:text="Add Note"
+        android:textColor="@color/text"/>
 
 </LinearLayout>
