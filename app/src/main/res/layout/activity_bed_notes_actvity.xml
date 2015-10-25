@@ -13,4 +13,12 @@
         android:layout_height="wrap_content"
         android:text="@string/under_construction" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/center_button"
+        android:text="Add new note"
+        android:textColor="@color/text"
+        android:onClick="redirectToAddNewNoteActivity"/>
+
 </RelativeLayout>
