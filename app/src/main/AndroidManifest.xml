@@ -16,14 +16,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BUOCActivity"
-            android:label="BUOC"/>
-
-        <activity android:name=".AboutAppActivity"
-            android:label="About Application"/>
-
-        <activity android:name=".SupportActivity"
-            android:label="Support"/>
+        <activity
+            android:name=".BUOCActivity"
+            android:label="BUOC" />
+        <activity
+            android:name=".AboutAppActivity"
+            android:label="About Application" />
+        <activity
+            android:name=".SupportActivity"
+            android:label="Support" />
+        <activity
+            android:name=".BedOptionsActivity"
+            android:label="@string/title_activity_bed_options" >
+        </activity>
+        <activity
+            android:name=".BedLayoutActivity"
+            android:label="@string/title_activity_bed_layout" >
+        </activity>
+        <activity
+            android:name=".BedHistoryActivity"
+            android:label="@string/title_activity_bed_history" >
+        </activity>
+        <activity
+            android:name=".BedNotesActvity"
+            android:label="@string/title_activity_bed_notes_actvity" >
+        </activity>
+        <activity
+            android:name=".BedImagesActivity"
+            android:label="@string/title_activity_bed_images" >
+        </activity>
     </application>
 
 </manifest>
