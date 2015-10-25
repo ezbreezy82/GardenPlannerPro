@@ -25,6 +25,8 @@
             android:text="Bed Layout"
             android:textSize="@dimen/button_text"
             android:onClick="redirectToBedLayoutActivity"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
             />
         <Button
             android:layout_width="match_parent"
