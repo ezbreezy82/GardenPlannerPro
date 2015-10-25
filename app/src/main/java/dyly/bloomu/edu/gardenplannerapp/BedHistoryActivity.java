@@ -1,5 +1,8 @@
 package dyly.bloomu.edu.gardenplannerapp;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +12,48 @@ import android.view.MenuItem;
 
 public class BedHistoryActivity extends AppCompatActivity {
 
+    //Static strings to fill the tab text in onCreate()
+    private static final String BED_PLANT_HISTORY = "Plant History";
+    private static final String BED_HARVEST_HISTORY = "Harvest History";
+    private static final String BED_WORK_HISTORY = "Work History";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_history);
+
+        //Retrieve TabLayout component and set the text of each tab.
+        TabLayout bedHistoryTabLayout = (TabLayout) findViewById(R.id.bedHistoryTabLayout);
+        bedHistoryTabLayout.addTab(bedHistoryTabLayout.newTab().setText(BED_PLANT_HISTORY));
+        bedHistoryTabLayout.addTab(bedHistoryTabLayout.newTab().setText(BED_HARVEST_HISTORY));
+        bedHistoryTabLayout.addTab(bedHistoryTabLayout.newTab().setText(BED_WORK_HISTORY));
+        bedHistoryTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        //Retrieve ViewPager component and implement the listeners for the tabs.
+        final ViewPager bedHistoryViewPager = (ViewPager) findViewById(R.id.bedHistoryViewPager);
+        final BedHistoryPageAdapter adapter = new BedHistoryPageAdapter(getSupportFragmentManager(),
+                bedHistoryTabLayout.getTabCount());
+        bedHistoryViewPager.setAdapter(adapter);
+        bedHistoryViewPager.addOnPageChangeListener(
+                new TabLayout.TabLayoutOnPageChangeListener(bedHistoryTabLayout));
+        bedHistoryTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+            @Override
+            public void onTabSelected(TabLayout.Tab tab)
+            {
+                bedHistoryViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                //do nothing for now.
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                //do nothing for now.
+            }
+        });
     }
 
     @Override
