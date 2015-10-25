@@ -1,10 +1,12 @@
 package dyly.bloomu.edu.gardenplannerapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class BedImagesActivity extends AppCompatActivity {
@@ -35,5 +37,10 @@ public class BedImagesActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void redirectToAddNewImageActivity(View view)
+    {
+        Intent intent = new Intent(this, AddNewImageActivity.class);
+        startActivity(intent);
     }
 }

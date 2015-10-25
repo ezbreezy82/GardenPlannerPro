@@ -44,4 +44,10 @@ public class BUOCActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BedOptionsActivity.class);
         startActivity(intent);
     }
+
+    public void redirectToAddNewNoteActivity(View view)
+    {
+        Intent intent = new Intent(this, AddNewNoteActivity.class);
+        startActivity(intent);
+    }
 }
