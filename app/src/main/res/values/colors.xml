@@ -5,5 +5,6 @@
     <color name="button_text">#ffececec</color>
     <color name="button_outline">#ff000000</color>
     <color name="action_bar_color">#993300</color>
+    <color name="bed_background">#ff46994d</color>
 
 </resources>
