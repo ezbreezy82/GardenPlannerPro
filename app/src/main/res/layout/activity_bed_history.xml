@@ -8,9 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dyly.bloomu.edu.gardenplannerapp.BedHistoryActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/under_construction" />
+        android:id="@+id/bedHistoryTabLayout"
+        android:background="@color/theme_background_color"
+        android:elevation="@dimen/bed_history_tab_layout_elevation"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bedHistoryViewPager"
+        android:layout_below="@id/bedHistoryTabLayout"/>
 
 </RelativeLayout>
