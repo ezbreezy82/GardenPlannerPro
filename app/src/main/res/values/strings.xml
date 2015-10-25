@@ -5,4 +5,11 @@
     <string name="under_construction">Under Construction</string>
     <string name="title_activity_support">Support</string>
     <string name="title_activity_about_app">About Application</string>
+    <string name="title_activity_bed_options">Bed Options</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_bed_layout">Bed Layout</string>
+    <string name="title_activity_bed_history">Bed History</string>
+    <string name="title_activity_bed_notes_actvity">Bed Notes</string>
+    <string name="title_activity_bed_images">Bed Images</string>
 </resources>
