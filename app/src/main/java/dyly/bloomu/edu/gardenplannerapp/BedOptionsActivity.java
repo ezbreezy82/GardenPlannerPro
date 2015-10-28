@@ -7,21 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class BedOptionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bed_options);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_bed_options, menu);
         return true;
     }
 
@@ -40,28 +39,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void redirectToBUOCActivity(View view)
+    public void redirectToBedLayoutActivity(View view)
     {
-
-        Intent intent = new Intent(this, BUOCActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void redirectToPlantSeedDBctivity(View view)
-    {
-        Toast.makeText(this,"Database Coming soon",Toast.LENGTH_LONG).show();
-    }
-
-    public void redirectToSupportctivity(View view)
-    {
-        Intent intent = new Intent(this, SupportActivity.class);
+        Intent intent = new Intent(this, BedLayoutActivity.class);
         startActivity(intent);
     }
 
-    public void redirectToAboutAppActivity(View view)
+    public void redirectToBedHistoryActivity(View view)
     {
-        Intent intent = new Intent(this, AboutAppActivity.class);
+        Intent intent = new Intent(this, BedHistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void redirectToBedNotesActivity(View view)
+    {
+        Intent intent = new Intent(this, BedNotesActvity.class);
+        startActivity(intent);
+    }
+
+    public void redirectToBedImagesActivity(View view)
+    {
+        Intent intent = new Intent(this, BedImagesActivity.class);
         startActivity(intent);
     }
 }

@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/view_background"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.AboutAppActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.BedLayoutActivity">
 
     <TextView
         android:layout_width="wrap_content"

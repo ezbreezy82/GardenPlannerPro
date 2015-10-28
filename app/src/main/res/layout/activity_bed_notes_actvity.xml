@@ -7,11 +7,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/view_background"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.AboutAppActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.BedNotesActvity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/under_construction" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/center_button"
+        android:text="Add new note"
+        android:textColor="@color/text"
+        android:onClick="redirectToAddNewNoteActivity"/>
 
 </RelativeLayout>

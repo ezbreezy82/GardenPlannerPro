@@ -6,55 +6,56 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/view_background"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:layout_gravity="center_vertical"
+    android:gravity="center"
     >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/top_button"
+                android:textColor="@color/text"
+                android:text="BUOC"
+                android:textSize="@dimen/button_text"
+                android:onClick="redirectToBUOCActivity"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/center_button"
+                android:textColor="@color/text"
+                android:text="Plant Seed Database"
+                android:textSize="@dimen/button_text"
+                android:onClick="redirectToPlantSeedDBctivity"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/center_button"
+                android:textColor="@color/text"
+                android:text="Support"
+                android:textSize="@dimen/button_text"
+                android:onClick="redirectToSupportctivity"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_button"
+                android:textColor="@color/text"
+                android:text="About App"
+                android:textSize="@dimen/button_text"
+                android:onClick="redirectToAboutAppActivity"
+                />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/top_button"
-            android:textColor="@color/button_text"
-            android:text="BUOC"
-            android:textSize="@dimen/button_text"
-            android:onClick="redirectToBUOCActivity"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/center_button"
-            android:textColor="@color/button_text"
-            android:text="Plant Seed Database"
-            android:textSize="@dimen/button_text"
-            android:onClick="redirectToPlantSeedDBctivity"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/center_button"
-            android:textColor="@color/button_text"
-            android:text="Support"
-            android:textSize="@dimen/button_text"
-            android:onClick="redirectToSupportctivity"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bottom_button"
-            android:textColor="@color/button_text"
-            android:text="About App"
-            android:textSize="@dimen/button_text"
-            android:onClick="redirectToAboutAppActivity"
-            />
-    </LinearLayout>
+        </LinearLayout>
 
 
 </LinearLayout>

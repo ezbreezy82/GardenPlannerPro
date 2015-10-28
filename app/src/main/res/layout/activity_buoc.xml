@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,6 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/view_background"
+    android:orientation="vertical"
     tools:context="dyly.bloomu.edu.gardenplannerapp.BUOCActivity">
 
     <TextView
@@ -13,4 +15,22 @@
         android:layout_height="wrap_content"
         android:text="@string/under_construction" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/bed_one"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="@color/bed_background"
+        android:onClick="redirectToBedOneOptions"
+        android:text="1"
+        android:textColor="@color/text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/center_button"
+        android:padding="20dp"
+        android:onClick="redirectToAddNewNoteActivity"
+        android:text="Add Note"
+        android:textColor="@color/text"/>
+
+</LinearLayout>

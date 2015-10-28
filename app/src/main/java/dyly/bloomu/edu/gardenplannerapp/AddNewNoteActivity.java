@@ -1,27 +1,24 @@
 package dyly.bloomu.edu.gardenplannerapp;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class AddNewNoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_new_note);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_note, menu);
         return true;
     }
 
@@ -38,30 +35,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void redirectToBUOCActivity(View view)
-    {
-
-        Intent intent = new Intent(this, BUOCActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void redirectToPlantSeedDBctivity(View view)
-    {
-        Toast.makeText(this,"Database Coming soon",Toast.LENGTH_LONG).show();
-    }
-
-    public void redirectToSupportctivity(View view)
-    {
-        Intent intent = new Intent(this, SupportActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectToAboutAppActivity(View view)
-    {
-        Intent intent = new Intent(this, AboutAppActivity.class);
-        startActivity(intent);
     }
 }
