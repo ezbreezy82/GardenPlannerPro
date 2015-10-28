@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/center_button"
+        android:padding="20dp"
         android:onClick="redirectToAddNewNoteActivity"
         android:text="Add Note"
         android:textColor="@color/text"/>

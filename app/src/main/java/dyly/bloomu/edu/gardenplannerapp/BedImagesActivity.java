@@ -36,7 +36,7 @@ public class BedImagesActivity extends AppCompatActivity {
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                // here,counter will be incremented each time,and the picture taken by camera will be stored as 1.jpg,2.jpg and likewise.
+                //counter will be incremented each time,and the picture taken by camera will be stored as 1.jpg,2.jpg and likewise.
                 count++;
                 String file = dir + count + ".jpg";
                 File newfile = new File(file);
