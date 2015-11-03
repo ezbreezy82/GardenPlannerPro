@@ -40,7 +40,7 @@
             android:label="@string/title_activity_bed_history" >
         </activity>
         <activity
-            android:name=".BedNotesActvity"
+            android:name=".BedNotesActivity"
             android:label="@string/title_activity_bed_notes_actvity" >
         </activity>
         <activity

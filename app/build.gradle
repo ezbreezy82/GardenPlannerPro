@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     //To support different widgets
     compile 'com.android.support:design:23.1.0'
+
 }
