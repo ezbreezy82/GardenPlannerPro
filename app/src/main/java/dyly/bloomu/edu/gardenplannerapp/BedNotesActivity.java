@@ -61,4 +61,6 @@ public class BedNotesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddNewNoteActivity.class);
         startActivity(intent);
     }
+
+
 }
