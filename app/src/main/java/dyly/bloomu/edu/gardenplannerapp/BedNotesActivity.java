@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +25,21 @@ public class BedNotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_notes_actvity);
+        //add custom header to list view.
+        View header = getLayoutInflater().inflate(R.layout.custom_bed_notes_header, null);
+        final ListView noteList = (ListView) findViewById(R.id.noteList);
+        noteList.addHeaderView(header, null, false);
 
-        ListView noteList = (ListView) findViewById(R.id.noteList);
-        //create fake test entries.
-        View footView;
-        for (int i = 0; i < 5; i++)
+        //demo for ListView
+        Note note_data[] = new Note[15];
+        for (int i = 0; i < note_data.length; i++)
         {
-           footView = getLayoutInflater().inflate(R.layout.custom_bed_note, null);
-            noteList.addFooterView(footView);
+            note_data[i] = new Note("Subject Line!!!", "won't be displayed");
         }
 
+        BedLayoutNoteListAdapter adapter = new BedLayoutNoteListAdapter(this,
+                R.layout.custom_bed_note, note_data);
+        noteList.setAdapter(adapter);
     }
 
     @Override

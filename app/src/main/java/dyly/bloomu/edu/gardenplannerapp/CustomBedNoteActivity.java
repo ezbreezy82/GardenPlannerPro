@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
  */
 public class CustomBedNoteActivity extends LinearLayout
 {
-    public CustomBedNoteActivity(Context context, AttributeSet attrs) {
+    public CustomBedNoteActivity(Context context) {
         super(context, null);
 
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
