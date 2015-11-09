@@ -8,7 +8,7 @@ import java.sql.Blob;
 public class ImageTableData {
 
     private int id;
-    private Blob image;
+    private byte[] image;
 
     public ImageTableData(){
 
@@ -16,7 +16,7 @@ public class ImageTableData {
         this.image = null;
     }
 
-    public ImageTableData(int id, Blob image) {
+    public ImageTableData(int id, byte[] image) {
         this.id = id;
         this.image = image;
     }
@@ -29,11 +29,11 @@ public class ImageTableData {
         this.id = id;
     }
 
-    public Blob getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }

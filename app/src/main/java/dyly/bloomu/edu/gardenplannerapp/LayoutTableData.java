@@ -8,14 +8,14 @@ import java.sql.Blob;
 public class LayoutTableData {
 
     private int id;
-    private Blob image;
+    private byte[] image;
 
     public LayoutTableData(){
 
         this.id = -1;
         this.image = null;
     }
-    public LayoutTableData(int id, Blob image) {
+    public LayoutTableData(int id, byte[] image) {
         this.id = id;
         this.image = image;
     }
@@ -28,11 +28,11 @@ public class LayoutTableData {
         this.id = id;
     }
 
-    public Blob getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
