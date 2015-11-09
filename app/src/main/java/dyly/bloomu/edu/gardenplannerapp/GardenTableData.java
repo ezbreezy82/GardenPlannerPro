@@ -8,7 +8,6 @@ import android.provider.BaseColumns;
 public class GardenTableData {
 
     private int id, bedID, noteID;
-    public static final String DATABASE_NAME = "GPlannerPro";
     public static final String TABLE_NAME= "Garden";
     public GardenTableData()
     {
