@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/garden_planner_pro_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -27,6 +27,9 @@
         <activity
             android:name=".SupportActivity"
             android:label="Support" />
+        <activity
+            android:name=".GardenNotesActivity"
+            android:label="Garden Notes" />
         <activity
             android:name=".BedOptionsActivity"
             android:label="@string/title_activity_bed_options" >
