@@ -1,12 +1,19 @@
 package dyly.bloomu.edu.gardenplannerapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 public class BUOCActivity extends AppCompatActivity {
@@ -15,6 +22,40 @@ public class BUOCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buoc);
+
+        LinearLayout gardenLayout = (LinearLayout) findViewById(R.id.gardenLayoutLinear);
+
+
+        //create buttons to put inside linear layout
+        int counter = 1;
+        for (int rows = 0; rows < 10; rows++)
+        {
+            LinearLayout currentLinear = new LinearLayout(this);
+            currentLinear.setOrientation(LinearLayout.HORIZONTAL);
+
+            for(int cols = 0; cols < 3; cols++)
+            {
+                final Button currButton = new Button(this);
+                LinearLayout.LayoutParams param;
+                param = new LinearLayout.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT, 1.0f);
+                currButton.setLayoutParams(param);
+                currButton.setWidth(50);
+                currButton.setHeight(125);
+                currButton.setGravity(Gravity.CENTER);
+                currButton.setId(counter);
+                currButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        redirectToBedOneOptions(currButton);
+                    }
+                });
+                currButton.setText("" + currButton.getId());
+                currentLinear.addView(currButton);
+                counter++;
+            }
+            gardenLayout.addView(currentLinear);
+        }
+
     }
 
     @Override
@@ -37,6 +78,12 @@ public class BUOCActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void redirectToGardenNotes(View view)
+    {
+        Intent intent = new Intent(this, GardenNotesActivity.class);
+        startActivity(intent);
     }
 
     public void redirectToBedOneOptions(View view)
