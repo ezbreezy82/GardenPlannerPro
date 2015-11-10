@@ -1,20 +1,20 @@
 package dyly.bloomu.edu.gardenplannerapp;
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-
 /**
- * Created by EVANDESKTOP on 11/2/2015.
+ * Created by EVANDESKTOP on 11/5/2015.
  */
-public class CustomBedNoteActivity extends LinearLayout
+public class CustomBedNotesHeader extends LinearLayout
 {
-    public CustomBedNoteActivity(Context context) {
+
+    public CustomBedNotesHeader(Context context)
+    {
         super(context, null);
 
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.custom_bed_note, this);
+        inflater.inflate(R.layout.custom_bed_notes_header, this);
     }
 }

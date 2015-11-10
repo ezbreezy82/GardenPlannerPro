@@ -9,9 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +27,41 @@ public class BedNotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_notes_actvity);
+        //add custom header to list view.
+        View header = getLayoutInflater().inflate(R.layout.custom_bed_notes_header, null);
+        final ListView noteList = (ListView) findViewById(R.id.noteList);
+        noteList.addHeaderView(header, null, false);
 
-        ListView noteList = (ListView) findViewById(R.id.noteList);
-        //create fake test entries.
-        View footView;
-        for (int i = 0; i < 5; i++)
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        Note presentation_data[] = null;
+        try
         {
-           footView = getLayoutInflater().inflate(R.layout.custom_bed_note, null);
-            noteList.addFooterView(footView);
+            presentation_data = new Note[]
+                {
+                        new Note("re soiled bed", "Resoiled the bed and watered the specified bed.", formatter.parse("11/02/2015 2:22")),
+                        new Note("Removed stink bugs.", "Bed was infested with stink bugs. I removed them " +
+                                "from the bed and sprayed so they will not come back.  " +
+                                "Please check to make sure that they are not there when viewing this.", formatter.parse("11/07/2015 3:13")),
+                        new Note("Terminated japanese beetles", "", formatter.parse("10/31/2015 4:56")),
+                        new Note("Replanted the carrots", "", formatter.parse("10/23/2015 5:05")),
+                        new Note ("Plant seems dry", "", formatter.parse("11/09/2015 1:13"))
+
+                };
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
         }
 
+        //demo for ListView
+        Note note_data[] = new Note[15];
+        for (int i = 0; i < note_data.length; i++)
+        {
+            note_data[i] = new Note("Subject Line!!!", "won't be displayed");
+        }
+
+        BedLayoutNoteListAdapter adapter = new BedLayoutNoteListAdapter(this,
+                R.layout.custom_bed_note, presentation_data);
+        noteList.setAdapter(adapter);
     }
 
     @Override
