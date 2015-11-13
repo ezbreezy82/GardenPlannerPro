@@ -1,9 +1,11 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+
+import dyly.bloomu.edu.gardenplannerapp.R;
 
 
 /**

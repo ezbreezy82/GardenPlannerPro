@@ -1,13 +1,13 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import dyly.bloomu.edu.gardenplannerapp.R;
 
 
 public class BedHistoryActivity extends AppCompatActivity {

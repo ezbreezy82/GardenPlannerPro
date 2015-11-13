@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,19 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import dyly.bloomu.edu.gardenplannerapp.R;
 
-public class AboutAppActivity extends AppCompatActivity {
+
+public class AddNewNoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_app);
+        setContentView(R.layout.activity_add_new_note);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_note, menu);
         return true;
     }
 

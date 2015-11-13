@@ -1,24 +1,19 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+
+import dyly.bloomu.edu.gardenplannerapp.Adapters.BedLayoutNoteListAdapter;
+import dyly.bloomu.edu.gardenplannerapp.Note;
+import dyly.bloomu.edu.gardenplannerapp.R;
 
 
 public class BedNotesActivity extends AppCompatActivity {

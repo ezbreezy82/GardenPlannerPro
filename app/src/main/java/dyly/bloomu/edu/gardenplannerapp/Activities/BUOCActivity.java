@@ -1,10 +1,6 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,12 +11,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
+import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.R;
+
 
 public class BUOCActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        BedTableData bedTableData = new BedTableData(1,1,1,1);
+        dbHelper.setBedTableData(bedTableData);
+
         setContentView(R.layout.activity_buoc);
 
         LinearLayout gardenLayout = (LinearLayout) findViewById(R.id.gardenLayoutLinear);

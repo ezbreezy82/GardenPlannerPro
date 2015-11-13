@@ -1,24 +1,29 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import dyly.bloomu.edu.gardenplannerapp.R;
 
-public class BedLayoutActivity extends AppCompatActivity {
+/**
+ * Created by EVANDESKTOP on 11/9/2015.
+ */
+public class GardenNotesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bed_layout);
+        setContentView(R.layout.activity_garden_notes);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_bed_layout, menu);
+        getMenuInflater().inflate(R.menu.menu_bed_notes_actvity, menu);
         return true;
     }
 
@@ -36,4 +41,12 @@ public class BedLayoutActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void redirectToAddNewNoteActivity(View view)
+    {
+        Intent intent = new Intent(this, AddNewNoteActivity.class);
+        startActivity(intent);
+    }
+
+
 }

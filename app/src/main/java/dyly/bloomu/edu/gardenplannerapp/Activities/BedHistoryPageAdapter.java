@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
