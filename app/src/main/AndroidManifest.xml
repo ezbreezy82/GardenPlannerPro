@@ -8,9 +8,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        >
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="Garden Planner" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,43 +20,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BUOCActivity"
+            android:name=".Activities.BUOCActivity"
             android:label="BUOC" />
         <activity
-            android:name=".AboutAppActivity"
+            android:name=".Activities.AboutAppActivity"
             android:label="About Application" />
         <activity
-            android:name=".SupportActivity"
+            android:name=".Activities.SupportActivity"
             android:label="Support" />
         <activity
-            android:name=".GardenNotesActivity"
+            android:name=".Activities.GardenNotesActivity"
             android:label="Garden Notes" />
         <activity
-            android:name=".BedOptionsActivity"
+            android:name=".Activities.BedOptionsActivity"
             android:label="@string/title_activity_bed_options" >
         </activity>
         <activity
-            android:name=".BedLayoutActivity"
+            android:name=".Activities.BedLayoutActivity"
             android:label="@string/title_activity_bed_layout" >
         </activity>
         <activity
-            android:name=".BedHistoryActivity"
+            android:name=".Activities.BedHistoryActivity"
             android:label="@string/title_activity_bed_history" >
         </activity>
         <activity
-            android:name=".BedNotesActivity"
+            android:name=".Activities.BedNotesActivity"
             android:label="@string/title_activity_bed_notes_actvity" >
         </activity>
         <activity
-            android:name=".BedImagesActivity"
+            android:name=".Activities.BedImagesActivity"
             android:label="@string/title_activity_bed_images" >
         </activity>
         <activity
-            android:name=".AddNewNoteActivity"
+            android:name=".Activities.AddNewNoteActivity"
             android:label="@string/title_activity_add_new_note" >
         </activity>
         <activity
-            android:name=".AddNewImageActivity"
+            android:name=".Activities.AddNewImageActivity"
             android:label="@string/title_activity_add_new_image" >
         </activity>
     </application>
