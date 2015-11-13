@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+
+import dyly.bloomu.edu.gardenplannerapp.Note;
+import dyly.bloomu.edu.gardenplannerapp.R;
 
 /**
  * Created by EVANDESKTOP on 11/5/2015.
