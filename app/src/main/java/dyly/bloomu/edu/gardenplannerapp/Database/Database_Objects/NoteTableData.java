@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 /**
  * Created by Dyly on 11/4/15.

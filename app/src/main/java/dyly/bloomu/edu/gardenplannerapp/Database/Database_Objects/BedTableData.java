@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 /**
  * Created by Dyly on 11/3/15.
@@ -16,8 +16,7 @@ public class BedTableData {
         this.historyID = -1;
     }
 
-    public BedTableData(int id, int noteID, int layoutID, int imageID, int historyID) {
-        this.id = id;
+    public BedTableData( int noteID, int layoutID, int imageID, int historyID) {
         this.noteID = noteID;
         this.layoutID = layoutID;
         this.imageID = imageID;

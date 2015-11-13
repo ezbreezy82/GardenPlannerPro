@@ -1,22 +1,21 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 import java.sql.Blob;
 
 /**
  * Created by Dyly on 11/4/15.
  */
-public class ImageTableData {
+public class LayoutTableData {
 
     private int id;
     private byte[] image;
 
-    public ImageTableData(){
+    public LayoutTableData(){
 
         this.id = -1;
         this.image = null;
     }
-
-    public ImageTableData(int id, byte[] image) {
+    public LayoutTableData(int id, byte[] image) {
         this.id = id;
         this.image = image;
     }
@@ -36,4 +35,5 @@ public class ImageTableData {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
 }

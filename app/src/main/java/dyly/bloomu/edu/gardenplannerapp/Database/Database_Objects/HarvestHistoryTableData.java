@@ -1,4 +1,4 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 import android.util.Log;
 
@@ -9,19 +9,19 @@ import java.util.Date;
 /**
  * Created by Dyly on 11/5/15.
  */
-public class WorkHistoryTableData {
+public class HarvestHistoryTableData {
     private int id;
     private Date date;
     private String note;
 
-    public WorkHistoryTableData()
+    public HarvestHistoryTableData()
     {
         this.id = -1;
         this.date = null;
         this.note = null;
     }
 
-    public WorkHistoryTableData(int id, Date date, String note) {
+    public HarvestHistoryTableData(int id, Date date, String note) {
         this.id = id;
         this.date = date;
         this.note = note;
