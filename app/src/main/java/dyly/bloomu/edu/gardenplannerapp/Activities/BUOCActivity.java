@@ -22,8 +22,8 @@ public class BUOCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
-        BedTableData bedTableData = new BedTableData(1,1,1,1);
-        dbHelper.setBedTableData(bedTableData);
+        //BedTableData bedTableData = new BedTableData(1,1,1,1);
+        //dbHelper.setBedTableData(bedTableData);
 
         setContentView(R.layout.activity_buoc);
 

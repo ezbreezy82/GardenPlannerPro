@@ -5,7 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.NoteTableData;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
@@ -37,5 +42,26 @@ public class AddNewNoteActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * To save a note in the database
+     * @param view
+     */
+    public void onSave(View view)
+    {
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        NoteTableData noteTableData = new NoteTableData();
+        EditText subject = (EditText)findViewById(R.id.subject_edit_text);
+        EditText note = (EditText) findViewById(R.id.note_edit_text);
+
+
+        noteTableData.setSubject(subject.getText().toString());
+        noteTableData.setNote(note.getText().toString());
+
+        dbHelper.setNoteTableData(noteTableData);
+        //Closes activity
+        finish();
+
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import dyly.bloomu.edu.gardenplannerapp.R;
 
@@ -37,5 +38,10 @@ public class AddNewImageActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onSave(View view)
+    {
+        
     }
 }
