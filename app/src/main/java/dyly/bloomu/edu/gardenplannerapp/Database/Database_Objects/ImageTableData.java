@@ -7,17 +7,21 @@ import java.sql.Blob;
  */
 public class ImageTableData {
 
-    private int id;
+    private int id, bedID, gardenID;
     private byte[] image;
 
     public ImageTableData(){
 
         this.id = -1;
+        this.bedID = -1;
+        this.gardenID = -1;
         this.image = null;
     }
 
-    public ImageTableData(int id, byte[] image) {
+    public ImageTableData(int id, int bedID, int gardenID, byte[] image) {
         this.id = id;
+        this.bedID = bedID;
+        this.gardenID = gardenID;
         this.image = image;
     }
 
@@ -27,6 +31,22 @@ public class ImageTableData {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getBedID() {
+        return bedID;
+    }
+
+    public void setBedID(int bedID) {
+        this.bedID = bedID;
+    }
+
+    public int getGardenID() {
+        return gardenID;
+    }
+
+    public void setGardenID(int gardenID) {
+        this.gardenID = gardenID;
     }
 
     public byte[] getImage() {

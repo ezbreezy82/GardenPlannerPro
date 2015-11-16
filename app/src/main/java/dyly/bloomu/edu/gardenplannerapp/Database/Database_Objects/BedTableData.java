@@ -5,22 +5,23 @@ package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
  */
 public class BedTableData {
 
-    private int id, noteID, layoutID, imageID, historyID;
+    private int id, noteID, layoutID, imageID, historyID, gardenID;
 
-    public BedTableData()
-    {
+    public BedTableData() {
         this.id = -1;
         this.noteID = -1;
         this.layoutID = -1;
         this.imageID = -1;
         this.historyID = -1;
+        this.gardenID = -1;
     }
 
-    public BedTableData( int noteID, int layoutID, int imageID, int historyID) {
+    public BedTableData(int noteID, int layoutID, int imageID, int historyID, int gardenID) {
         this.noteID = noteID;
         this.layoutID = layoutID;
         this.imageID = imageID;
         this.historyID = historyID;
+        this.gardenID = gardenID;
     }
 
     public int getId() {
@@ -61,5 +62,13 @@ public class BedTableData {
 
     public void setHistoryID(int historyID) {
         this.historyID = historyID;
+    }
+
+    public int getGardenID() {
+        return gardenID;
+    }
+
+    public void setGardenID(int gardenID) {
+        this.gardenID = gardenID;
     }
 }

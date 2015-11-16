@@ -1,23 +1,31 @@
 package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Dyly on 11/4/15.
  */
 public class NoteTableData {
     private int id;
+    private Date date;
     private String subject, note;
 
     public NoteTableData()
     {
-        this.id = -1;
         this.subject = null;
         this.note = null;
+        setDate(Calendar.getInstance().toString());
     }
 
-    public NoteTableData(int id, String subject, String note) {
-        this.id = id;
+    public NoteTableData( String subject, String note, String date) {
         this.subject = subject;
         this.note = note;
+        setDate(date);
     }
 
     public int getId() {
@@ -42,5 +50,29 @@ public class NoteTableData {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * used for database retrieval of code
+     * @param date string to be formated to a date
+     */
+    public void setDate(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(date);
+        } catch (ParseException e) {
+            Log.d("Date for Plant History", e.getMessage());
+        }
+
+        this.date = convertedDate;
     }
 }

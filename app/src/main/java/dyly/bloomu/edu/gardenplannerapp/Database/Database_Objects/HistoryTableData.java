@@ -5,7 +5,7 @@ package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
  */
 public class HistoryTableData {
 
-    private int id, plantHistotyID, workHistoryID, harvestHistoryID;
+    private int id, plantHistotyID, workHistoryID, harvestHistoryID, bedID;
 
     public HistoryTableData()
     {
@@ -13,13 +13,15 @@ public class HistoryTableData {
         this.plantHistotyID = -1;
         this.workHistoryID = -1;
         this.harvestHistoryID = -1;
+        this.bedID = -1;
     }
 
-    public HistoryTableData(int id, int plantHistotyID, int workHistoryID, int harvestHistoryID) {
+    public HistoryTableData(int id, int plantHistotyID, int workHistoryID, int harvestHistoryID, int bedID) {
         this.id = id;
         this.plantHistotyID = plantHistotyID;
         this.workHistoryID = workHistoryID;
         this.harvestHistoryID = harvestHistoryID;
+        this.bedID = bedID;
     }
 
     public int getId() {

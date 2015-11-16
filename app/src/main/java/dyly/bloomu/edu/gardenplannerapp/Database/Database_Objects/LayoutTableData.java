@@ -7,16 +7,18 @@ import java.sql.Blob;
  */
 public class LayoutTableData {
 
-    private int id;
+    private int id, bedID;
     private byte[] image;
 
     public LayoutTableData(){
 
         this.id = -1;
+        this.bedID = -1;
         this.image = null;
     }
-    public LayoutTableData(int id, byte[] image) {
+    public LayoutTableData(int id,int bedID, byte[] image) {
         this.id = id;
+        this.bedID = bedID;
         this.image = image;
     }
 
@@ -26,6 +28,14 @@ public class LayoutTableData {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getBedID() {
+        return bedID;
+    }
+
+    public void setBedID(int bedID) {
+        this.bedID = bedID;
     }
 
     public byte[] getImage() {
