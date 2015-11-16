@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 
 
 /**
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
  */
 public class CustomBedNoteActivity extends LinearLayout
 {
+
     public CustomBedNoteActivity(Context context) {
         super(context, null);
 
