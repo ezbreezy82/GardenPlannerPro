@@ -70,6 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         this.sdb = sdb;
         this.executeSQLScript("SQLscript/create_tables.sql");
+
         Log.d("Database operations", "Database Upgraded");
 
     }
@@ -123,6 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (SQLException e) {
             Log.d("Database, Garden add", e.getMessage());
         }
+        Log.d("Database", "Garden succesfully added");
     }
 
     public void setBedTableData(BedTableData bedTableData) {
@@ -140,6 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (SQLException e) {
             Log.d("Database, Bed add", e.getMessage());
         }
+        Log.d("Database", "Bed succesfully added");
     }
 
     public void setImageTableData(ImageTableData imageTableData) {
@@ -154,6 +157,7 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (SQLException e) {
             Log.d("Database, Image add", e.getMessage());
         }
+        Log.d("Database", "Image succesfully added");
     }
 
     public void setLayoutTableData(LayoutTableData layoutTableData) {
@@ -168,6 +172,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }catch(SQLException e){
             Log.d("Database, Layout add", e.getMessage());
         }
+        Log.d("Database", "Layout succesfully added");
     }
 
     public void setNoteTableData(NoteTableData noteTableData) {
@@ -183,6 +188,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }catch(SQLException e){
             Log.d("Database, Note add",e.getMessage());
         }
+        Log.d("Database", "Note succesfully added");
     }
 
     public void setHistoryTableData(HistoryTableData historyTableData) {
@@ -199,6 +205,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }catch(SQLException e){
             Log.d("Database, History add", e.getMessage());
         }
+        Log.d("Database", "History succesfully added");
     }
 
     public void setPlantHistoryTableData(PlantHistoryTableData plantHistoryTableData) {
@@ -212,8 +219,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
            this.sdb.close();
        }catch (SQLException e){
-           Log.d("Database, PlantHistory add", e.getMessage());
+           Log.d("Database, PHistory add", e.getMessage());
        }
+        Log.d("Database", "PHistory succesfully added");
     }
 
     public void setHarvestHistoryTableData(HarvestHistoryTableData harvestHistoryTableData) {
@@ -227,8 +235,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
             this.sdb.close();
         }catch(SQLException e){
-            Log.d("Database, Harvest History add", e.getMessage());
+            Log.d("Database, HHistory add", e.getMessage());
         }
+        Log.d("Database", "HHistory succesfully added");
     }
 
     public void setWorkHistoryTableData(WorkHistoryTableData workHistoryTableData) {
@@ -244,8 +253,9 @@ public class DBHelper extends SQLiteOpenHelper {
             this.sdb.close();
 
         } catch (SQLException e) {
-            Log.d("DataBase, Work History add", e.getMessage());
+            Log.d("DataBase, WHistory add", e.getMessage());
         }
+        Log.d("Database", "WHistory succesfully added");
     }
 
 //      not needed yet because there are not multiple gardens
@@ -320,8 +330,7 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.d("BedTableData", e.getMessage());
         }
-
-
+        Log.d("Database", "Bed succesfully retrieved");
         return listOfBedTableData;
     }
 
@@ -357,12 +366,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("ImageTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "Image succesfully retrieved");
         return listOfImagaeTableData;
     }
 
@@ -401,6 +410,7 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.d("LayoutTableData", e.getMessage());
         }
+        Log.d("Database", "Layout succesfully retrieved");
         return listOfLayoutTableData;
     }
 
@@ -435,12 +445,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("NoteTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "Note succesfully retrieved");
         return listOfNoteTableData;
     }
 
@@ -476,12 +486,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("HistoryTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "History succesfully retrieved");
         return listOfHistoryTableData;
     }
 
@@ -516,12 +526,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("PlantHistoryTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "PHistory succesfully retrieved");
         return listOfPlantHistoryTableData;
     }
 
@@ -556,12 +566,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("WorkHistoryTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "WHistory succesfully retrieved");
         return listOfWorkHistoryTableData;
     }
 
@@ -595,12 +605,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-
+            this.sdb.close();
         } catch (Exception e) {
             Log.d("HarvestHistoryTableData", e.getMessage());
         }
 
-        this.sdb.close();
+        Log.d("Database", "HHistory succesfully retrieved");
         return listOfHarvestHistoryTableData;
     }
 
