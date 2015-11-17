@@ -1,9 +1,11 @@
 package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Dyly on 11/4/15.
  */
-public class HistoryTableData {
+public class HistoryTableData implements Serializable {
 
     private int id, plantHistotyID, workHistoryID, harvestHistoryID, bedID;
 

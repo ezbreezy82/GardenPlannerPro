@@ -2,6 +2,7 @@ package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
 /**
  * Created by Dyly on 11/5/15.
  */
-public class WorkHistoryTableData {
+public class WorkHistoryTableData implements Serializable {
     private int id;
     private Date date;
     private String note;

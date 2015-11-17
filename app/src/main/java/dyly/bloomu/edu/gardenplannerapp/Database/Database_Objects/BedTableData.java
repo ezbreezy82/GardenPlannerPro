@@ -1,9 +1,11 @@
 package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Dyly on 11/3/15.
  */
-public class BedTableData {
+public class BedTableData implements Serializable{
 
     private int id, noteID, layoutID, imageID, historyID, gardenID;
 

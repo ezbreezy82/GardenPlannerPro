@@ -2,10 +2,12 @@ package dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects;
 
 import android.provider.BaseColumns;
 
+import java.io.Serializable;
+
 /**
  * Created by Dyly on 11/3/15.
  */
-public class GardenTableData {
+public class GardenTableData implements Serializable {
 
     private int id, bedID, noteID;
     public static final String TABLE_NAME= "Garden";
