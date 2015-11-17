@@ -7,6 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+
+import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
@@ -43,24 +47,46 @@ public class BedOptionsActivity extends AppCompatActivity {
     public void redirectToBedLayoutActivity(View view)
     {
         Intent intent = new Intent(this, BedLayoutActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        // get bed layouts
+        ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
+
+        intent.putExtra("LayoutTableData", dbHelper.getLayoutTableData(listOfBedTableData.get(0).getLayoutID()));
         startActivity(intent);
     }
 
     public void redirectToBedHistoryActivity(View view)
     {
         Intent intent = new Intent(this, BedHistoryActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        // get bed layouts
+        ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
+
+        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getHistoryID()));
         startActivity(intent);
     }
 
     public void redirectToBedNotesActivity(View view)
     {
         Intent intent = new Intent(this, BedNotesActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        // get bed layouts
+        ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
+
+        // a little help to tell if its from garden layout or bed options page
+        intent.putExtra("BedorGarden", 1);
+        intent.putExtra("NotesTableData", dbHelper.getNoteTableData(listOfBedTableData.get(0).getNoteID()));
         startActivity(intent);
     }
 
     public void redirectToBedImagesActivity(View view)
     {
         Intent intent = new Intent(this, BedImagesActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        // get bed layouts
+        ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
+
+        intent.putExtra("LayoutTableData", dbHelper.getImageTableData(listOfBedTableData.get(0).getImageID()));
         startActivity(intent);
     }
 }

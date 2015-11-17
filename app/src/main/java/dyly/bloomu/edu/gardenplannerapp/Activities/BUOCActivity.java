@@ -50,7 +50,7 @@ public class BUOCActivity extends AppCompatActivity {
                 currButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        redirectToBedOneOptions(currButton);
+                        redirectToBedOptions(currButton);
                     }
                 });
                 currButton.setText("" + currButton.getId());
@@ -90,15 +90,26 @@ public class BUOCActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void redirectToBedOneOptions(View view)
+    public void redirectToBedOptions(View view)
     {
         Intent intent = new Intent(this, BedOptionsActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        //findout what bed was clicked ID should be some integer from 1-30
+        int bedID = view.getId();
+        //set bed data for next activity
+        intent.putExtra("BedTableData", dbHelper.getBedTableData(bedID));
+
         startActivity(intent);
     }
 
     public void redirectToAddNewNoteActivity(View view)
     {
         Intent intent = new Intent(this, AddNewNoteActivity.class);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+
+        //a lttle help to see if its from the garden layout or bed options page
+        intent.putExtra("BedorGarden", 0);
+        intent.putExtra("GardenTableData", dbHelper.getGardenTableData(1));
         startActivity(intent);
     }
 }

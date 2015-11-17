@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     {
 
         Intent intent = new Intent(this, BUOCActivity.class);
+        //set the garden ID so you can access the beds on the next page
+        intent.putExtra("gardenID", 1);
         startActivity(intent);
 
     }
