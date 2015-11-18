@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListPopupWindow;
 import android.widget.ListView;
 
 import java.text.DateFormat;
@@ -22,9 +25,10 @@ public class BedNotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_notes_actvity);
+
         //add custom header to list view.
-        View header = getLayoutInflater().inflate(R.layout.custom_bed_notes_header, null);
-        final ListView noteList = (ListView) findViewById(R.id.noteList);
+        View header = getLayoutInflater().inflate(R.layout.custom_notes_header, null);
+        final ListView noteList = (ListView) this.findViewById(R.id.bedNoteList);
         noteList.addHeaderView(header, null, false);
 
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -46,14 +50,6 @@ public class BedNotesActivity extends AppCompatActivity {
         {
             ex.printStackTrace();
         }
-
-        //demo for ListView
-        Note note_data[] = new Note[15];
-        for (int i = 0; i < note_data.length; i++)
-        {
-            note_data[i] = new Note("Subject Line!!!", "won't be displayed");
-        }
-
         BedLayoutNoteListAdapter adapter = new BedLayoutNoteListAdapter(this,
                 R.layout.custom_bed_note, presentation_data);
         noteList.setAdapter(adapter);
@@ -86,6 +82,4 @@ public class BedNotesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddNewNoteActivity.class);
         startActivity(intent);
     }
-
-
 }
