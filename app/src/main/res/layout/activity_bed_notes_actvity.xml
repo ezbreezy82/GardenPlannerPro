@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="15sp"
-            android:id="@+id/noteList"/>
+            android:id="@+id/bedNoteList"/>
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:id="@+id/addNote"
             android:layout_gravity="bottom|end"
             android:onClick="redirectToAddNewNoteActivity"
-            app:layout_anchor="@id/noteList"
+            app:layout_anchor="@id/bedNoteList"
             app:layout_anchorGravity="bottom|right|end"
             />
     </android.support.design.widget.CoordinatorLayout>
