@@ -321,6 +321,7 @@ public class DBHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     bedTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                    bedTableData.setGardenID(cursor.getInt(cursor.getColumnIndex("gardenID")));
                     bedTableData.setNoteID(cursor.getInt(cursor.getColumnIndex("noteID")));
                     bedTableData.setLayoutID(cursor.getInt(cursor.getColumnIndex("layoutID")));
                     bedTableData.setImageID(cursor.getInt(cursor.getColumnIndex("imageID")));
@@ -341,7 +342,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      * Used to get <ImageTableData/> from the database, listed from first row to last row
-     * @param id Image id to get
+     * @param id Bed id of image to get
      * @return ArrayList of <ImageTableData/> Objects
      */
     public ArrayList<ImageTableData> getImageTableData(int id) {
@@ -353,7 +354,7 @@ public class DBHelper extends SQLiteOpenHelper {
             ImageTableData imageTableData = new ImageTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '" + id + "';";
-            Cursor cursor = this.sdb.query("image", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.sdb.query("image", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -381,7 +382,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      * Used to get <LayoutTableData/> from the database, listed from first row to last row
-     * @param id Layout id to get
+     * @param id Bed id of layout to get
      * @return ArrayList of <LayoutTableData/> Objects
      */
     public ArrayList<LayoutTableData> getLayoutTableData(int id) {
@@ -392,7 +393,7 @@ public class DBHelper extends SQLiteOpenHelper {
             LayoutTableData layoutTableData = new LayoutTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '" + id + "';";
-            Cursor cursor = this.sdb.query("layout", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.sdb.query("layout", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -419,24 +420,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      * Used to get <NoteTableData/> from the database, listed from first row to last row
-     * @param id Note id to get
+     * @param id bed id of notes to get
      * @return ArrayList of <NoteTableData/> Objects
      */
     public ArrayList<NoteTableData> getNoteTableData(int id) {
-        this.sdb = getReadableDatabase();
 
         ArrayList<NoteTableData> listOfNoteTableData = new ArrayList<>();
-        NoteTableData noteTableData = new NoteTableData();
-
-        //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = this.sdb.query("note", null, "_id = ?", new String[]{""+id}, null, null, null, null);
-
-        //return empty arraylist if cursor is null
-        if (cursor == null)
-            return listOfNoteTableData;
-
-        //get all of the beds or gardens notes
         try {
+            this.sdb = getReadableDatabase();
+            NoteTableData noteTableData = new NoteTableData();
+
+            //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
+            Cursor cursor = this.sdb.query("note", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+
+            //return empty arraylist if cursor is null
+            if (cursor == null)
+                return listOfNoteTableData;
+
+            //get all of the beds or gardens notes
+
             if (cursor.moveToFirst()) {
                 do {
                     noteTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -458,24 +460,26 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      * Used to get <HistoryTableData/> from the database, listed from first row to last row
-     * @param id History id to get
+     * @param id Bed id of history to get
      * @return ArrayList of <HistoryTableData/> Objects
      */
     public ArrayList<HistoryTableData> getHistoryTableData(int id) {
-        this.sdb = getReadableDatabase();
-
         ArrayList<HistoryTableData> listOfHistoryTableData = new ArrayList<>();
-        HistoryTableData historyTableData = new HistoryTableData();
+        try{
+            this.sdb = getReadableDatabase();
 
-        //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = sdb.query("history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
 
-        //return empty arraylist if cursor is null
-        if (cursor == null)
-            return listOfHistoryTableData;
+            HistoryTableData historyTableData = new HistoryTableData();
 
-        //get all of the beds history
-        try {
+            //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
+            Cursor cursor = sdb.query("history", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+
+            //return empty arraylist if cursor is null
+            if (cursor == null)
+                return listOfHistoryTableData;
+
+            //get all of the beds history
+
             if (cursor.moveToFirst()) {
                 do {
                     historyTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -502,20 +506,22 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return ArrayList of <PlantHistoryTableData/> Objects
      */
     public ArrayList<PlantHistoryTableData> getPlantHistoryTableData(int id) {
-        this.sdb = getReadableDatabase();
-
         ArrayList<PlantHistoryTableData> listOfPlantHistoryTableData = new ArrayList<>();
-        PlantHistoryTableData plantHistoryTableData = new PlantHistoryTableData();
-
-        //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = this.sdb.query("plant_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
-
-        //return empty arraylist if cursor is null
-        if (cursor == null)
-            return listOfPlantHistoryTableData;
-
-        //get all of the beds plant history
         try {
+            this.sdb = getReadableDatabase();
+
+
+            PlantHistoryTableData plantHistoryTableData = new PlantHistoryTableData();
+
+            //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
+            Cursor cursor = this.sdb.query("plant_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+
+            //return empty arraylist if cursor is null
+            if (cursor == null)
+                return listOfPlantHistoryTableData;
+
+            //get all of the beds plant history
+
             if (cursor.moveToFirst()) {
                 do {
                     plantHistoryTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -541,20 +547,23 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return ArrayList of <WorkHistoryTableData/> Objects
      */
     public ArrayList<WorkHistoryTableData> getWorkHistoryTableData(int id) {
-        this.sdb = getReadableDatabase();
 
         ArrayList<WorkHistoryTableData> listOfWorkHistoryTableData = new ArrayList<>();
-        WorkHistoryTableData workHistoryTableData = new WorkHistoryTableData();
-
-        //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = this.sdb.query("work_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
-
-        //return empty arraylist if cursor is null
-        if (cursor == null)
-            return listOfWorkHistoryTableData;
-
-        //get all of the beds work history
         try {
+            this.sdb = getReadableDatabase();
+
+
+            WorkHistoryTableData workHistoryTableData = new WorkHistoryTableData();
+
+            //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
+            Cursor cursor = this.sdb.query("work_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+
+            //return empty arraylist if cursor is null
+            if (cursor == null)
+                return listOfWorkHistoryTableData;
+
+            //get all of the beds work history
+
             if (cursor.moveToFirst()) {
                 do {
                     workHistoryTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -580,19 +589,23 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return ArrayList of <HarvestHistoryTableData/> Objects
      */
     public ArrayList<HarvestHistoryTableData> getHarvestHistoryTableData(int id) {
-        this.sdb = getReadableDatabase();
+
         ArrayList<HarvestHistoryTableData> listOfHarvestHistoryTableData = new ArrayList<>();
+
+        try {
+        this.sdb = getReadableDatabase();
+
         HarvestHistoryTableData harvestHistoryTableData = new HarvestHistoryTableData();
 
         //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = this.sdb.query("harvest_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+        Cursor cursor = this.sdb.query("harvest_history", null, "_id = ?", new String[]{"" + id}, null, null, null, null);
 
         //return empty arraylist if cursor is null
         if (cursor == null)
             return listOfHarvestHistoryTableData;
 
         //get all of the beds harvest history
-        try {
+
             if (cursor.moveToFirst()) {
                 do {
                     harvestHistoryTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -612,4 +625,171 @@ public class DBHelper extends SQLiteOpenHelper {
         return listOfHarvestHistoryTableData;
     }
 
+    public void removeGardenTableData(int id)
+    {
+        try{
+            this.sdb = getReadableDatabase();
+            ArrayList<GardenTableData> gardenTableData = this.getGardenTableData(id);
+            //remove bed object
+            this.removeBedTableData(gardenTableData.get(0).getBedID());
+            //remove garden object
+            this.sdb.delete("garden", "_id =?", new String[] {""+id});
+            Log.d("Database", "garden Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    /**
+     * removes <BedTableData/> for whatever bed id is passed and also removes
+     * all other data related to bed
+     * @param id Bed id to be deleted
+     */
+    public void removeBedTableData(int id)
+    {
+
+        try{
+            this.sdb = getReadableDatabase();
+            ArrayList<BedTableData> bedTableData = this.getBedTableData(id);
+            ArrayList<HistoryTableData> historyTableData = this.getHistoryTableData(id);
+            ArrayList<ImageTableData> imageTableData = this.getImageTableData(id);
+            ArrayList<LayoutTableData> layoutTableData = this.getLayoutTableData(id);
+            ArrayList<NoteTableData> noteTableData = this.getNoteTableData(id);
+
+            this.sdb = getWritableDatabase();
+            //delete history of bed
+            for(HistoryTableData tempHistoryTableData: historyTableData)
+            {
+                this.removeHarvestHistoryTableData(tempHistoryTableData.getHarvestHistoryID());
+                this.removePlantHistoryTableData(tempHistoryTableData.getPlantHistotyID());
+                this.removeWorkHistoryTableData(tempHistoryTableData.getWorkHistoryID());
+            }
+            this.removeHistoryTableData(bedTableData.get(0).getId());
+
+            //delete images related to bed
+            for(ImageTableData tempImageTableData: imageTableData)
+            {
+                this.removeImageTableData(tempImageTableData.getId());
+            }
+            //delete Layouts related to this bed
+            for(LayoutTableData tempLayoutTableData: layoutTableData)
+            {
+                this.removeLayoutTableData(tempLayoutTableData.getId());
+            }
+            //delete notes related to this bed
+            for(NoteTableData tempNoteTableData: noteTableData)
+            {
+                this.removeNoteTableData(tempNoteTableData.getId());
+            }
+
+            this.sdb.delete("bed", "_id =?", new String[] {""+id});
+            Log.d("Database", "bed Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeImageTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("image", "_id =?", new String[] {""+id});
+            Log.d("Database","image Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeNoteTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("note", "_id =?", new String[] {""+id});
+            Log.d("Database","note Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeLayoutTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("layout", "_id =?", new String[] {""+id});
+            Log.d("Database","layout Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeHistoryTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("history", "bedID =?", new String[] {""+id});
+            Log.d("Database","plant History Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removePlantHistoryTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("plant_history", "_id =?", new String[] {""+id});
+            Log.d("Database","plant History Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeHarvestHistoryTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("harvest_history", "_id =?", new String[] {""+id});
+            Log.d("Database","harvest History Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
+
+    public void removeWorkHistoryTableData(int id)
+    {
+        this.sdb = getWritableDatabase();
+        try{
+            this.sdb.delete("work_history", "_id =?", new String[] {""+id});
+            Log.d("Database","work History Deleted");
+        }catch (SQLException e)
+        {
+            Log.d("Database error", e.getMessage());
+        }
+
+        this.sdb.close();
+    }
 }
