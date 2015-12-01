@@ -57,4 +57,12 @@ public class HistoryTableData implements Serializable {
     public void setHarvestHistoryID(int harvestHistoryID) {
         this.harvestHistoryID = harvestHistoryID;
     }
+
+    public int getBedID() {
+        return bedID;
+    }
+
+    public void setBedID(int bedID) {
+        this.bedID = bedID;
+    }
 }
