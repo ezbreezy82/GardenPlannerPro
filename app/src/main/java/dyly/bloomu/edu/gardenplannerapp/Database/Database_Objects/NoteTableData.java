@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Dyly on 11/4/15.
  */
 public class NoteTableData implements Serializable {
-    private int id;
+    private int id, bedID, gardenID;
     private Date date;
     private String subject, note;
 
@@ -59,6 +59,22 @@ public class NoteTableData implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getBedID() {
+        return bedID;
+    }
+
+    public void setBedID(int bedID) {
+        this.bedID = bedID;
+    }
+
+    public int getGardenID() {
+        return gardenID;
+    }
+
+    public void setGardenID(int gardenID) {
+        this.gardenID = gardenID;
     }
 
     /**
