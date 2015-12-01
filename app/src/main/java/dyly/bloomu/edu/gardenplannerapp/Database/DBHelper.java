@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper mInstance = null;
     private static final String DATABASE_NAME = "GPlannerPro";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     //    public String GARDEN_CREATE_QUERY = "CREATE TABLE "+GardenTableData.TABLE_NAME+"( INT,"+ GardenTableData.bedID+" INT,"+
 //            GardenTableData.noteID+" INT);";
     private SQLiteDatabase sdb;
@@ -133,10 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
             this.sdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put("noteID", bedTableData.getNoteID());
-            contentValues.put("imageID", bedTableData.getImageID());
-            contentValues.put("layoutID", bedTableData.getLayoutID());
-            contentValues.put("historyID", bedTableData.getHistoryID());
+            contentValues.put("gardenID", bedTableData.getGardenID());
             this.sdb.insert("bed", null, contentValues);
 
             this.sdb.close();
@@ -152,6 +149,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("image", imageTableData.getImage());
+            contentValues.put("bedID", imageTableData.getBedID());
+            contentValues.put("gardenID", imageTableData.getGardenID());
             this.sdb.insert("image", null, contentValues);
 
             this.sdb.close();
@@ -167,6 +166,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("image", layoutTableData.getImage());
+            contentValues.put("bedID", layoutTableData.getBedID());
             this.sdb.insert("layout", null, contentValues);
 
             this.sdb.close();
@@ -183,6 +183,8 @@ public class DBHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put("subject", noteTableData.getSubject());
             contentValues.put("note", noteTableData.getNote());
+            contentValues.put("bedID", noteTableData.getBedID());
+            contentValues.put("gardenID", noteTableData.getGardenID());
             this.sdb.insert("note", null, contentValues);
 
             this.sdb.close();
@@ -200,6 +202,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("havrvestHistoryID", historyTableData.getHarvestHistoryID());
             contentValues.put("plantHistoryID", historyTableData.getPlantHistotyID());
             contentValues.put("workHistoryID", historyTableData.getWorkHistoryID());
+            contentValues.put("bedID", historyTableData.getBedID());
             this.sdb.insert("history", null, contentValues);
 
             this.sdb.close();
@@ -322,10 +325,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 do {
                     bedTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
                     bedTableData.setGardenID(cursor.getInt(cursor.getColumnIndex("gardenID")));
-                    bedTableData.setNoteID(cursor.getInt(cursor.getColumnIndex("noteID")));
-                    bedTableData.setLayoutID(cursor.getInt(cursor.getColumnIndex("layoutID")));
-                    bedTableData.setImageID(cursor.getInt(cursor.getColumnIndex("imageID")));
-                    bedTableData.setHistoryID(cursor.getInt(cursor.getColumnIndex("historyID")));
 
                     listOfBedTableData.add(bedTableData);
 
@@ -353,9 +352,13 @@ public class DBHelper extends SQLiteOpenHelper {
             this.sdb = getReadableDatabase();
             ImageTableData imageTableData = new ImageTableData();
 
-            //String dataExtracter = "SELECT *  FROM garden where id = '" + id + "';";
             Cursor cursor = this.sdb.query("image", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
+            //if cursor is empty check to see if its a garden image
+            if(!cursor.moveToFirst())
+            {
+                cursor = this.sdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
+            }
             //return empty arraylist if cursor is null
             if (cursor == null)
                 return listOfImagaeTableData;
@@ -432,6 +435,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
             Cursor cursor = this.sdb.query("note", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+
+            //if cursor is empty check to see if its a garden image
+            if(!cursor.moveToFirst())
+            {
+                cursor = this.sdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
+            }
 
             //return empty arraylist if cursor is null
             if (cursor == null)
