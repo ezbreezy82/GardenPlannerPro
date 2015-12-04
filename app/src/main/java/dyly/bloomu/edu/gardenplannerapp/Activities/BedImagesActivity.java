@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +34,7 @@ public class BedImagesActivity extends AppCompatActivity {
         newdir.mkdirs();
 
 
-        Button capture = (Button) findViewById(R.id.add_image_button);
+        FloatingActionButton capture = (FloatingActionButton) findViewById(R.id.addImage);
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -90,10 +91,5 @@ public class BedImagesActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    public void redirectToAddNewImageActivity(View view)
-    {
-        Intent intent = new Intent(this, AddNewImageActivity.class);
-        startActivity(intent);
     }
 }
