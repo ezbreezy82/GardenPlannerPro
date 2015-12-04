@@ -36,9 +36,15 @@
             android:label="@string/title_activity_bed_options" >
         </activity>
         <activity
-            android:name=".Activities.BedLayoutActivity"
+            android:name=".Activities.BedLayoutModifyActivity"
             android:label="@string/title_activity_bed_layout" >
         </activity>
+
+        <activity
+            android:name=".Activities.BedLayoutActivity"
+            android:label="Bed Layout">
+        </activity>
+
         <activity
             android:name=".Activities.BedHistoryActivity"
             android:label="@string/title_activity_bed_history" >
