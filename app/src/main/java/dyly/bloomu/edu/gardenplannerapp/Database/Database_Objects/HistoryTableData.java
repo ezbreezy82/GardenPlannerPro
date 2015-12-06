@@ -7,11 +7,7 @@ import java.io.Serializable;
  */
 public class HistoryTableData implements Serializable {
 
-<<<<<<< HEAD:app/src/main/java/dyly/bloomu/edu/gardenplannerapp/HistoryTableData.java
-    private int id, plantHistoryID, workHistoryID, harvestHistoryID;
-=======
-    private int id, plantHistotyID, workHistoryID, harvestHistoryID, bedID;
->>>>>>> pr/4:app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/HistoryTableData.java
+    private int id, plantHistoryID, workHistoryID, harvestHistoryID, bedID;
 
     public HistoryTableData()
     {
@@ -22,11 +18,7 @@ public class HistoryTableData implements Serializable {
         this.bedID = -1;
     }
 
-<<<<<<< HEAD:app/src/main/java/dyly/bloomu/edu/gardenplannerapp/HistoryTableData.java
-    public HistoryTableData(int id, int plantHistoryID, int workHistoryID, int harvestHistoryID) {
-=======
-    public HistoryTableData(int id, int plantHistotyID, int workHistoryID, int harvestHistoryID, int bedID) {
->>>>>>> pr/4:app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/HistoryTableData.java
+    public HistoryTableData(int id, int plantHistoryID, int workHistoryID, int harvestHistoryID, int bedID) {
         this.id = id;
         this.plantHistoryID = plantHistoryID;
         this.workHistoryID = workHistoryID;
