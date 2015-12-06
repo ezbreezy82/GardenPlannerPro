@@ -34,11 +34,11 @@ public class HistoryTableData implements Serializable {
         this.id = id;
     }
 
-    public int getPlantHistotyID() {
+    public int getPlantHistoryID() {
         return plantHistoryID;
     }
 
-    public void setPlantHistotyID(int plantHistoryID) {
+    public void setPlantHistoryID(int plantHistoryID) {
         this.plantHistoryID = plantHistoryID;
     }
 
