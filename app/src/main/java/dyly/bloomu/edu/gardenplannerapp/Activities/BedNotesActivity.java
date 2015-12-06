@@ -23,7 +23,7 @@ public class BedNotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_notes_actvity);
         //add custom header to list view.
-        View header = getLayoutInflater().inflate(R.layout.custom_bed_notes_header, null);
+        View header = getLayoutInflater().inflate(R.layout.custom_notes_header, null);
         final ListView noteList = (ListView) findViewById(R.id.noteList);
         noteList.addHeaderView(header, null, false);
 

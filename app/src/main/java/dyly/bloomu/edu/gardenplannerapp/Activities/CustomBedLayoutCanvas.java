@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Stack;
+
 /**
  * Created by EVANDESKTOP on 12/2/2015.
  */
@@ -23,13 +25,14 @@ public class CustomBedLayoutCanvas extends View {
     private Paint mPaint;
     private float mX, mY;
     private static final float TOLERANCE = 5;
+    private Stack<Path> currentDrawingPaths = null;
 
     public CustomBedLayoutCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         c = context;
 
         path = new Path();
-
+        currentDrawingPaths = new Stack<>();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.BLACK);
@@ -49,30 +52,25 @@ public class CustomBedLayoutCanvas extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawBitmap(mBitmap, 0, 0, mPaint);
         canvas.drawPath(path, mPaint);
     }
 
-    private void moveTouch(float x, float y) {
-        float dx = Math.abs(x - mX);
-        float dy = Math.abs(x - mY);
-        if (dx >= TOLERANCE || dy >= TOLERANCE) {
-            path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-            mX = x;
-            mY = y;
-        }
-    }
-
-    private void startTouch(float x, float y)
-    {
-        path.moveTo(x, y);
-        mX = x;
-        mY = y;
-    }
 
     public void clearCanvas()
     {
-        path.reset();
-        invalidate();
+        mBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
+        currentDrawingPaths.clear();
+    }
+
+    public void undo()
+    {
+        if(currentDrawingPaths.size() > 0)
+        {
+            currentDrawingPaths.pop();
+            invalidate();
+        }
     }
 
     private void upTouch()
@@ -88,18 +86,21 @@ public class CustomBedLayoutCanvas extends View {
         switch (event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
-                startTouch(x, y);
+                path.moveTo(x, y);
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
-                moveTouch(x, y);
+                path.lineTo(x, y);
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                upTouch();
+                mCanvas.drawPath(path, mPaint);
+                path.reset();
+                currentDrawingPaths.push(path);
                 invalidate();
                 break;
         }
+        System.out.println(currentDrawingPaths.size());
         return true;
     }
 

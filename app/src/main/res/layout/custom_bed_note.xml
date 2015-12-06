@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/customBedNoteLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/customNoteLayout"
     android:orientation="horizontal">
 
     <TextView
@@ -13,8 +13,7 @@
         android:text="This is a subject line that will be entered!"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:layout_weight="2"
-        />
+        android:layout_weight="1" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -23,5 +22,12 @@
         android:layout_weight="3"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:id="@+id/noteControls"
+        />
 
 </LinearLayout>

@@ -1,9 +1,13 @@
 package dyly.bloomu.edu.gardenplannerapp.Activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import dyly.bloomu.edu.gardenplannerapp.R;
 
@@ -36,5 +40,31 @@ public class BedLayoutModifyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearCanvas(View view)
+    {
+        final CustomBedLayoutCanvas canvas = (CustomBedLayoutCanvas) findViewById(R.id.canvas);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Clear Drawing");
+        builder.setMessage("Are you sure you want to delete the current drawing?").
+        setCancelable(true).
+        setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                canvas.clearCanvas();
+            }
+        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        });
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.show();
+    }
+
+    public void undo(View view)
+    {
+        final CustomBedLayoutCanvas canvas = (CustomBedLayoutCanvas) findViewById(R.id.canvas);
+        canvas.undo();
     }
 }
