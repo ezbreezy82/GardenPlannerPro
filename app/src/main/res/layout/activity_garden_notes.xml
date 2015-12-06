@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/view_background"
     android:orientation="vertical"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.BedNotesActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.Activities.BedNotesActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
