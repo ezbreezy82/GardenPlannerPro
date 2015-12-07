@@ -1,19 +1,15 @@
 package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import java.util.ArrayList;
 
 import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
 import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
@@ -101,20 +97,6 @@ public class BUOCActivity extends AppCompatActivity {
         //findout what bed was clicked ID should be some integer from 1-30
         int bedID = view.getId();
         //set bed data for next activity
-        ArrayList<BedTableData> listOfbedTableData = dbHelper.getBedTableData(bedID);
-        Log.d("first bed retrieval", ""+listOfbedTableData.size());
-
-        if(listOfbedTableData.isEmpty()){
-            Log.d("Database", "No bed in DB");
-            try{
-                BedTableData bedTableData = new BedTableData();
-                bedTableData.setGardenID(1);
-                dbHelper.setBedTableData(bedTableData);
-            }catch (SQLException e){
-                Log.d("Database", e.getMessage());
-            }
-
-        }
         intent.putExtra("BedTableData", dbHelper.getBedTableData(bedID));
 
         startActivity(intent);
