@@ -10,9 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
+import dyly.bloomu.edu.gardenplannerapp.Adapters.GardenLayoutNotePreviewListAdapter;
 import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
 import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.Note;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
@@ -60,6 +63,27 @@ public class BUOCActivity extends AppCompatActivity {
             gardenLayout.addView(currentLinear);
         }
 
+        //Grab the first five garden notes and display them in the notes section
+        //for now we will mock up data to show.
+        final ListView gardenNotePreviewList = (ListView) findViewById(R.id.gardenNotePreviewList);
+        Note mock_up_data[] = null;
+        try
+        {
+            mock_up_data = new Note[5];
+            mock_up_data[0] = new Note("Warning signs around garden", "");
+            mock_up_data[1] = new Note("Cleaned around garden.", "");
+            mock_up_data[2] = new Note("Created new Garden Worksheet.", "");
+            mock_up_data[3] = new Note("subject 4", "");
+            mock_up_data[4] = new Note("subject 5", "");
+
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        GardenLayoutNotePreviewListAdapter adapter = new GardenLayoutNotePreviewListAdapter(this,
+                R.layout.custom_garden_note, mock_up_data);
+        gardenNotePreviewList.setAdapter(adapter);
     }
 
     @Override
@@ -111,5 +135,11 @@ public class BUOCActivity extends AppCompatActivity {
         intent.putExtra("BedorGarden", 0);
         intent.putExtra("GardenTableData", dbHelper.getGardenTableData(1));
         startActivity(intent);
+    }
+
+    public void redirectToGardenNotesActivity(View view)
+    {
+        //Intent intent = new Intent(this, GardenNotesActivity.class);
+        //startActivity(intent);
     }
 }
