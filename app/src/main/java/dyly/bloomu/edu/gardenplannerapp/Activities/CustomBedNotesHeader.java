@@ -17,6 +17,6 @@ public class CustomBedNotesHeader extends LinearLayout
         super(context, null);
 
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.custom_bed_notes_header, this);
+        inflater.inflate(R.layout.custom_notes_header, this);
     }
 }

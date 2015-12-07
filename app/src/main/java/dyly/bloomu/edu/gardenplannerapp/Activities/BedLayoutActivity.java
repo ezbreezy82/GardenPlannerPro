@@ -1,5 +1,6 @@
 package dyly.bloomu.edu.gardenplannerapp.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,16 @@ public class BedLayoutActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if( id == R.id.modifyBedLayout)
+        {
+            redirectToBedLayoutModifyActivity(item);
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void redirectToBedLayoutModifyActivity(MenuItem item) {
+        Intent intent = new Intent(this, BedLayoutModifyActivity.class);
+        startActivity(intent);
     }
 }

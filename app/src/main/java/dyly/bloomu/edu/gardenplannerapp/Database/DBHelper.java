@@ -281,7 +281,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("havrvestHistoryID", historyTableData.getHarvestHistoryID());
-            contentValues.put("plantHistoryID", historyTableData.getPlantHistotyID());
+            contentValues.put("plantHistoryID", historyTableData.getPlantHistoryID());
             contentValues.put("workHistoryID", historyTableData.getWorkHistoryID());
             contentValues.put("bedID", historyTableData.getBedID());
             this.msdb.insert("history", null, contentValues);
@@ -573,7 +573,7 @@ public class DBHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     historyTableData.setId(cursor.getInt(cursor.getColumnIndex("_id")));
-                    historyTableData.setPlantHistotyID(cursor.getInt(cursor.getColumnIndex("plantHistoryID")));
+                    historyTableData.setPlantHistoryID(cursor.getInt(cursor.getColumnIndex("plantHistoryID")));
                     historyTableData.setWorkHistoryID(cursor.getInt(cursor.getColumnIndex("workHistoryID")));
                     historyTableData.setHarvestHistoryID(cursor.getInt(cursor.getColumnIndex("harvestHistoryID")));
 
@@ -754,7 +754,7 @@ public class DBHelper extends SQLiteOpenHelper {
             for(HistoryTableData tempHistoryTableData: historyTableData)
             {
                 this.removeHarvestHistoryTableData(tempHistoryTableData.getHarvestHistoryID());
-                this.removePlantHistoryTableData(tempHistoryTableData.getPlantHistotyID());
+                this.removePlantHistoryTableData(tempHistoryTableData.getPlantHistoryID());
                 this.removeWorkHistoryTableData(tempHistoryTableData.getWorkHistoryID());
             }
             this.removeHistoryTableData(bedTableData.get(0).getId());

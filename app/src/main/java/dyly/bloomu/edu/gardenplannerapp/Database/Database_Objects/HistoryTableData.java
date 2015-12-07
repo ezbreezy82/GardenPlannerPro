@@ -7,20 +7,20 @@ import java.io.Serializable;
  */
 public class HistoryTableData implements Serializable {
 
-    private int id, plantHistotyID, workHistoryID, harvestHistoryID, bedID;
+    private int id, plantHistoryID, workHistoryID, harvestHistoryID, bedID;
 
     public HistoryTableData()
     {
         this.id = -1;
-        this.plantHistotyID = -1;
+        this.plantHistoryID = -1;
         this.workHistoryID = -1;
         this.harvestHistoryID = -1;
         this.bedID = -1;
     }
 
-    public HistoryTableData(int id, int plantHistotyID, int workHistoryID, int harvestHistoryID, int bedID) {
+    public HistoryTableData(int id, int plantHistoryID, int workHistoryID, int harvestHistoryID, int bedID) {
         this.id = id;
-        this.plantHistotyID = plantHistotyID;
+        this.plantHistoryID = plantHistoryID;
         this.workHistoryID = workHistoryID;
         this.harvestHistoryID = harvestHistoryID;
         this.bedID = bedID;
@@ -34,12 +34,12 @@ public class HistoryTableData implements Serializable {
         this.id = id;
     }
 
-    public int getPlantHistotyID() {
-        return plantHistotyID;
+    public int getPlantHistoryID() {
+        return plantHistoryID;
     }
 
-    public void setPlantHistotyID(int plantHistotyID) {
-        this.plantHistotyID = plantHistotyID;
+    public void setPlantHistoryID(int plantHistoryID) {
+        this.plantHistoryID = plantHistoryID;
     }
 
     public int getWorkHistoryID() {
