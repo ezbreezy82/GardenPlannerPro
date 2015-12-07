@@ -44,10 +44,12 @@ public class DBHelper extends SQLiteOpenHelper {
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
+        ctx.deleteDatabase(DATABASE_NAME);
         if (mInstance == null) {
             mInstance = new DBHelper(ctx.getApplicationContext());
         }
         return mInstance;
+
     }
 
     private DBHelper(Context context) {
@@ -61,8 +63,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sdb) {
         this.sdb = sdb;
-        this.executeSQLScript("create_tables.sql");
-        this.executeSQLScript("insert_beds.sql");
+        this.executeSQLScript("SQLscript/create_tables.sql");
+        this.executeSQLScript("SQLscript/insert_beds.sql");
         Log.d("Database operations", "Database created");
     }
 
@@ -70,8 +72,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sdb, int oldVersion, int newVersion) {
 
         this.sdb = sdb;
-        this.executeSQLScript("SQLscript/create_tables.sql");
-
         Log.d("Database operations", "Database Upgraded");
 
     }
@@ -87,6 +87,10 @@ public class DBHelper extends SQLiteOpenHelper {
             byte[] buffer = new byte[1024];
             int length;
             AssetManager assetManager = context.getAssets();
+            for(String path:assetManager.list("SQLscript"))
+            {
+                System.out.println(path);
+            }
             InputStream inputStream = null;
             inputStream = assetManager.open(script);
             while ((length = inputStream.read(buffer)) != -1) {
