@@ -14,14 +14,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/undo"
             android:onClick="undo"
-            android:src="@android:drawable/ic_delete"/>
+            android:src="@android:drawable/ic_menu_revert"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/clearAll"
             android:onClick="clearCanvas"
-            android:src="@android:drawable/ic_notification_clear_all"/>
+            android:src="@android:drawable/ic_delete"/>
 
         <ImageButton
             android:layout_width="wrap_content"
