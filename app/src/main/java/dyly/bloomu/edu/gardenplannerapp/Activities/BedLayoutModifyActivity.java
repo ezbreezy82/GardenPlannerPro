@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import dyly.bloomu.edu.gardenplannerapp.R;
 
@@ -62,9 +63,13 @@ public class BedLayoutModifyActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void undo(View view)
-    {
+    public void undo(View view) {
         final CustomBedLayoutCanvas canvas = (CustomBedLayoutCanvas) findViewById(R.id.canvas);
         canvas.undo();
+    }
+
+    public void changeDrawingColor(View view)
+    {
+        Toast.makeText(this, "Coming soon.", Toast.LENGTH_LONG).show();
     }
 }
