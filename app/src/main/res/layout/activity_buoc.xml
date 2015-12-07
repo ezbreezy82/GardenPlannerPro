@@ -61,13 +61,13 @@
                 android:background="@color/theme_background_color"
                 android:clickable="true"
                 android:gravity="center"
-                android:onClick="redirectToAddNewNoteActivity"
+                android:onClick="redirectToGardenNotesActivity"
                 android:text="Notes"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
             <ListView
-                android:id="@+id/noteList"
+                android:id="@+id/gardenNotePreviewList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/noteHeader" />
