@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 
 import dyly.bloomu.edu.gardenplannerapp.R;
 
@@ -13,6 +14,7 @@ import dyly.bloomu.edu.gardenplannerapp.R;
  */
 public class CustomBedNoteActivity extends LinearLayout
 {
+
     public CustomBedNoteActivity(Context context) {
         super(context, null);
 

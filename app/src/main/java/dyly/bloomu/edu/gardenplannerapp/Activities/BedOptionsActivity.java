@@ -26,6 +26,19 @@ public class BedOptionsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_bed_options, menu);
+
+        //check to see if theres bed data
+        ArrayList<BedTableData> bedTableData = (ArrayList<BedTableData>)getIntent().getSerializableExtra("BedTableData");
+
+        if(!bedTableData.isEmpty())
+        {
+            System.out.println(bedTableData.get(0).getGardenID());
+            System.out.println(bedTableData.get(0).getId());
+
+        }else{
+            System.out.println("No bed table data");
+        }
+
         return true;
     }
 
@@ -51,7 +64,7 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        intent.putExtra("LayoutTableData", dbHelper.getLayoutTableData(listOfBedTableData.get(0).getLayoutID()));
+        intent.putExtra("LayoutTableData", dbHelper.getLayoutTableData(listOfBedTableData.get(0).getId()));
         startActivity(intent);
     }
 
@@ -62,7 +75,7 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getHistoryID()));
+        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getId()));
         startActivity(intent);
     }
 
@@ -75,7 +88,7 @@ public class BedOptionsActivity extends AppCompatActivity {
 
         // a little help to tell if its from garden layout or bed options page
         intent.putExtra("BedorGarden", 1);
-        intent.putExtra("NotesTableData", dbHelper.getNoteTableData(listOfBedTableData.get(0).getNoteID()));
+        intent.putExtra("NotesTableData", dbHelper.getNoteTableData(listOfBedTableData.get(0).getId()));
         startActivity(intent);
     }
 
@@ -86,7 +99,7 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        intent.putExtra("LayoutTableData", dbHelper.getImageTableData(listOfBedTableData.get(0).getImageID()));
+        intent.putExtra("LayoutTableData", dbHelper.getImageTableData(listOfBedTableData.get(0).getId()));
         startActivity(intent);
     }
 }
