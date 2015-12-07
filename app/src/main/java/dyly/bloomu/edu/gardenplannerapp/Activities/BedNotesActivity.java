@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.text.DateFormat;
@@ -16,7 +17,7 @@ import dyly.bloomu.edu.gardenplannerapp.Note;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
-public class BedNotesActivity extends AppCompatActivity {
+public class BedNotesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class BedNotesActivity extends AppCompatActivity {
         BedLayoutNoteListAdapter adapter = new BedLayoutNoteListAdapter(this,
                 R.layout.custom_bed_note, presentation_data);
         noteList.setAdapter(adapter);
+        noteList.setOnItemClickListener(this);
     }
 
     @Override
@@ -87,5 +89,15 @@ public class BedNotesActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void redirectToNoteViewerActivity(View view)
+    {
+        Intent intent = new Intent(this, NoteViewerActivity.class);
+        startActivity(intent);
+    }
 
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        redirectToNoteViewerActivity(view);
+    }
 }
