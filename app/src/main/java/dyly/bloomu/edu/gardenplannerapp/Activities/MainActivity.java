@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
-         mydatabase = openOrCreateDatabase(dbHelper.getDatabaseName(),MODE_PRIVATE,null);
+        mydatabase = openOrCreateDatabase(dbHelper.getDatabaseName(),MODE_PRIVATE,null);
     }
 
     @Override

@@ -28,4 +28,3 @@ INSERT INTO garden(bedID, noteID) VALUES(27,27);
 INSERT INTO garden(bedID, noteID) VALUES(28,28);
 INSERT INTO garden(bedID, noteID) VALUES(29,29);
 INSERT INTO garden(bedID, noteID) VALUES(30,30);
-

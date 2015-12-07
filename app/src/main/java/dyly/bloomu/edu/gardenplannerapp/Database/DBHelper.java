@@ -2,8 +2,11 @@ package dyly.bloomu.edu.gardenplannerapp.Database;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import android.content.ContentValues;
@@ -12,6 +15,7 @@ import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -33,47 +37,82 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper mInstance = null;
     private static final String DATABASE_NAME = "GPlannerPro";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 18;
+    private static String DATABASE_PATH = "";
     //    public String GARDEN_CREATE_QUERY = "CREATE TABLE "+GardenTableData.TABLE_NAME+"( INT,"+ GardenTableData.bedID+" INT,"+
 //            GardenTableData.noteID+" INT);";
-    private SQLiteDatabase sdb;
+    private SQLiteDatabase msdb;
     Context context;
 
-    public static DBHelper getInstance(Context ctx) {
+    public static DBHelper getInstance(Context context) {
 
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
         if (mInstance == null) {
-            mInstance = new DBHelper(ctx.getApplicationContext());
+            mInstance = new DBHelper(context);
         }
         return mInstance;
     }
 
     private DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        if(android.os.Build.VERSION.SDK_INT >= 17){
+            DATABASE_PATH = context.getApplicationInfo().dataDir + "/databases/";
+        }
+        else
+        {
+            DATABASE_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        }
+
         this.context = context;
         //context.deleteDatabase(DATABASE_NAME);
-        Log.d("Database operations", "Database trying to be created");
+        Log.d("Database operations", "Database helper class");
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase sdb) {
-        this.sdb = sdb;
-        this.executeSQLScript("create_tables.sql");
-        this.executeSQLScript("insert_beds.sql");
+
+        boolean mDataBaseExist = checkDatabase();
+        if(!mDataBaseExist)
+        {
+            this.getReadableDatabase();
+            this.close();
+            try
+            {
+                openDatabase();
+                //Copy the database from assests
+                copyDataBase();
+            }
+            catch (IOException mIOException)
+            {
+                throw new Error("ErrorCopyingDataBase");
+            }
+        }
+        Log.d("Database", "onCreate");
+
+//        this.msdb = sdb;
+//        this.executeSQLScript("create_tables");
+//        this.executeSQLScript("insert_buoc_garden");
+//        this.executeSQLScript("insert_beds");
         Log.d("Database operations", "Database created");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sdb, int oldVersion, int newVersion) {
 
-        this.sdb = sdb;
-        this.executeSQLScript("SQLscript/create_tables.sql");
+        Log.d("Database", "onUpgrade");
+
+        //need to add code here
 
         Log.d("Database operations", "Database Upgraded");
 
+    }
+    public void openDatabase() throws SQLException {
+        //Open the database
+        String mypath = DATABASE_PATH + DATABASE_NAME;
+        msdb = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
     /**
@@ -100,28 +139,70 @@ public class DBHelper extends SQLiteOpenHelper {
             for (int i = 0; i < createTableScript.length; i++) {
                 String sqlStatement = createTableScript[i].trim();
                 if (sqlStatement.length() > 0) {
-                    this.sdb.execSQL(sqlStatement + ";");
+                    this.msdb.execSQL(sqlStatement + ";");
                 }
             }
         } catch (IOException e) {
-            Log.d("File error: ", e.getMessage());
+            Log.d("File error ", e.getMessage());
+            Log.e("File error","error stack trace", e);
+
         } catch (SQLException e) {
-            Log.d("Database error: ", e.getMessage());
+            Log.d("Database error ", e.getMessage());
         }
 
 
     }
 
+    public void removeDatabase()
+    {
+        if(!this.msdb.isOpen())
+            openDatabase();
+        msdb.close();
+
+    }
+    //Check that the database exists here: /data/data/your package/databases/Da Name
+    private boolean checkDatabase() {
+        //SQLiteDatabase checkdb = null;
+        boolean checkdb = false;
+        try {
+            String myPath = DATABASE_PATH + DATABASE_NAME;
+            File dbfile = new File(myPath);
+            //checkdb = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READWRITE);
+            checkdb = dbfile.exists();
+        } catch(SQLiteException e) {
+            Log.e("Check Database", "DB doesnt exist", e);
+        }
+        return checkdb;
+    }
+
+    //Copy the database from assets
+    private void copyDataBase() throws IOException
+    {
+        InputStream mInput = context.getAssets().open(DATABASE_NAME);
+        String outFileName = DATABASE_PATH + DATABASE_NAME;
+        OutputStream mOutput = new FileOutputStream(outFileName);
+        byte[] mBuffer = new byte[1024];
+        int mLength;
+        while ((mLength = mInput.read(mBuffer))>0)
+        {
+            mOutput.write(mBuffer, 0, mLength);
+        }
+        mOutput.flush();
+        mOutput.close();
+        mInput.close();
+    }
+
+
     public void setGardenTableData(GardenTableData gardenTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("bedID", gardenTableData.getBedID());
             contentValues.put("noteID", gardenTableData.getNoteID());
-            this.sdb.insert("garden", null, contentValues);
+            this.msdb.insert("garden", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         } catch (SQLException e) {
             Log.d("Database, Garden add", e.getMessage());
         }
@@ -130,13 +211,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setBedTableData(BedTableData bedTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("gardenID", bedTableData.getGardenID());
-            this.sdb.insert("bed", null, contentValues);
+            this.msdb.insert("bed", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         } catch (SQLException e) {
             Log.d("Database, Bed add", e.getMessage());
         }
@@ -145,15 +226,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setImageTableData(ImageTableData imageTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("image", imageTableData.getImage());
             contentValues.put("bedID", imageTableData.getBedID());
             contentValues.put("gardenID", imageTableData.getGardenID());
-            this.sdb.insert("image", null, contentValues);
+            this.msdb.insert("image", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         } catch (SQLException e) {
             Log.d("Database, Image add", e.getMessage());
         }
@@ -162,14 +243,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setLayoutTableData(LayoutTableData layoutTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("image", layoutTableData.getImage());
             contentValues.put("bedID", layoutTableData.getBedID());
-            this.sdb.insert("layout", null, contentValues);
+            this.msdb.insert("layout", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         }catch(SQLException e){
             Log.d("Database, Layout add", e.getMessage());
         }
@@ -178,16 +259,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setNoteTableData(NoteTableData noteTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("subject", noteTableData.getSubject());
             contentValues.put("note", noteTableData.getNote());
             contentValues.put("bedID", noteTableData.getBedID());
             contentValues.put("gardenID", noteTableData.getGardenID());
-            this.sdb.insert("note", null, contentValues);
+            this.msdb.insert("note", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         }catch(SQLException e){
             Log.d("Database, Note add",e.getMessage());
         }
@@ -196,16 +277,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setHistoryTableData(HistoryTableData historyTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("havrvestHistoryID", historyTableData.getHarvestHistoryID());
             contentValues.put("plantHistoryID", historyTableData.getPlantHistoryID());
             contentValues.put("workHistoryID", historyTableData.getWorkHistoryID());
             contentValues.put("bedID", historyTableData.getBedID());
-            this.sdb.insert("history", null, contentValues);
+            this.msdb.insert("history", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         }catch(SQLException e){
             Log.d("Database, History add", e.getMessage());
         }
@@ -214,14 +295,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setPlantHistoryTableData(PlantHistoryTableData plantHistoryTableData) {
        try {
-           this.sdb = getWritableDatabase();
+           this.msdb = getWritableDatabase();
 
            ContentValues contentValues = new ContentValues();
            contentValues.put("note", plantHistoryTableData.getNote());
            contentValues.put("date", plantHistoryTableData.getDate().toString());
-           this.sdb.insert("plant_history", null, contentValues);
+           this.msdb.insert("plant_history", null, contentValues);
 
-           this.sdb.close();
+           this.msdb.close();
        }catch (SQLException e){
            Log.d("Database, PHistory add", e.getMessage());
        }
@@ -230,14 +311,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setHarvestHistoryTableData(HarvestHistoryTableData harvestHistoryTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("note", harvestHistoryTableData.getNote());
             contentValues.put("date", harvestHistoryTableData.getDate().toString());
-            this.sdb.insert("harvest_history", null, contentValues);
+            this.msdb.insert("harvest_history", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
         }catch(SQLException e){
             Log.d("Database, HHistory add", e.getMessage());
         }
@@ -247,14 +328,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void setWorkHistoryTableData(WorkHistoryTableData workHistoryTableData) {
         try {
 
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("note", workHistoryTableData.getNote());
             contentValues.put("date", workHistoryTableData.getDate().toString());
-            this.sdb.insert("work_history", null, contentValues);
+            this.msdb.insert("work_history", null, contentValues);
 
-            this.sdb.close();
+            this.msdb.close();
 
         } catch (SQLException e) {
             Log.d("DataBase, WHistory add", e.getMessage());
@@ -271,11 +352,11 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         ArrayList<GardenTableData> listOfGardenTableData = new ArrayList<>();
         try{
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             GardenTableData gardenTableData = new GardenTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor =  this.sdb.query("garden", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor =  this.msdb.query("garden", null, "_id = ?", new String[]{""+id}, null, null, null, null);
             //return empty arraylist if cursor is null
             if (cursor == null)
                 return listOfGardenTableData;
@@ -310,11 +391,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<BedTableData> getBedTableData( int id) {
         ArrayList<BedTableData> listOfBedTableData = new ArrayList<>();
         try {
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             BedTableData bedTableData = new BedTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor = sdb.query("bed", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = msdb.query("bed", null, "_id = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -331,7 +412,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
 
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("BedTableData", e.getMessage());
         }
@@ -349,15 +430,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<ImageTableData> listOfImagaeTableData = new ArrayList<>();
         try {
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             ImageTableData imageTableData = new ImageTableData();
 
-            Cursor cursor = this.sdb.query("image", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.msdb.query("image", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //if cursor is empty check to see if its a garden image
             if(!cursor.moveToFirst())
             {
-                cursor = this.sdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
+                cursor = this.msdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
             }
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -374,7 +455,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("ImageTableData", e.getMessage());
         }
@@ -392,11 +473,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<LayoutTableData> listOfLayoutTableData = new ArrayList<>();
         try{
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             LayoutTableData layoutTableData = new LayoutTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '" + id + "';";
-            Cursor cursor = this.sdb.query("layout", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.msdb.query("layout", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -430,16 +511,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<NoteTableData> listOfNoteTableData = new ArrayList<>();
         try {
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             NoteTableData noteTableData = new NoteTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor = this.sdb.query("note", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.msdb.query("note", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //if cursor is empty check to see if its a garden image
             if(!cursor.moveToFirst())
             {
-                cursor = this.sdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
+                cursor = this.msdb.query("image", null, "gardenID = ?", new String[]{""+id}, null, null, null, null);
             }
 
             //return empty arraylist if cursor is null
@@ -458,7 +539,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("NoteTableData", e.getMessage());
         }
@@ -475,13 +556,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<HistoryTableData> getHistoryTableData(int id) {
         ArrayList<HistoryTableData> listOfHistoryTableData = new ArrayList<>();
         try{
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
 
 
             HistoryTableData historyTableData = new HistoryTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor = sdb.query("history", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = msdb.query("history", null, "bedID = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -500,7 +581,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("HistoryTableData", e.getMessage());
         }
@@ -517,13 +598,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<PlantHistoryTableData> getPlantHistoryTableData(int id) {
         ArrayList<PlantHistoryTableData> listOfPlantHistoryTableData = new ArrayList<>();
         try {
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
 
 
             PlantHistoryTableData plantHistoryTableData = new PlantHistoryTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor = this.sdb.query("plant_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.msdb.query("plant_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -541,7 +622,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("PlantHistoryTableData", e.getMessage());
         }
@@ -559,13 +640,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<WorkHistoryTableData> listOfWorkHistoryTableData = new ArrayList<>();
         try {
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
 
 
             WorkHistoryTableData workHistoryTableData = new WorkHistoryTableData();
 
             //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-            Cursor cursor = this.sdb.query("work_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
+            Cursor cursor = this.msdb.query("work_history", null, "_id = ?", new String[]{""+id}, null, null, null, null);
 
             //return empty arraylist if cursor is null
             if (cursor == null)
@@ -583,7 +664,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("WorkHistoryTableData", e.getMessage());
         }
@@ -602,12 +683,12 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<HarvestHistoryTableData> listOfHarvestHistoryTableData = new ArrayList<>();
 
         try {
-        this.sdb = getReadableDatabase();
+        this.msdb = getReadableDatabase();
 
         HarvestHistoryTableData harvestHistoryTableData = new HarvestHistoryTableData();
 
         //String dataExtracter = "SELECT *  FROM garden where id = '"+id+"';";
-        Cursor cursor = this.sdb.query("harvest_history", null, "_id = ?", new String[]{"" + id}, null, null, null, null);
+        Cursor cursor = this.msdb.query("harvest_history", null, "_id = ?", new String[]{"" + id}, null, null, null, null);
 
         //return empty arraylist if cursor is null
         if (cursor == null)
@@ -625,7 +706,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 } while (cursor.moveToNext());
             }
-            this.sdb.close();
+            this.msdb.close();
         } catch (Exception e) {
             Log.d("HarvestHistoryTableData", e.getMessage());
         }
@@ -637,19 +718,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public void removeGardenTableData(int id)
     {
         try{
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             ArrayList<GardenTableData> gardenTableData = this.getGardenTableData(id);
             //remove bed object
             this.removeBedTableData(gardenTableData.get(0).getBedID());
             //remove garden object
-            this.sdb.delete("garden", "_id =?", new String[] {""+id});
+            this.msdb.delete("garden", "_id =?", new String[]{"" + id});
             Log.d("Database", "garden Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     /**
@@ -661,14 +742,14 @@ public class DBHelper extends SQLiteOpenHelper {
     {
 
         try{
-            this.sdb = getReadableDatabase();
+            this.msdb = getReadableDatabase();
             ArrayList<BedTableData> bedTableData = this.getBedTableData(id);
             ArrayList<HistoryTableData> historyTableData = this.getHistoryTableData(id);
             ArrayList<ImageTableData> imageTableData = this.getImageTableData(id);
             ArrayList<LayoutTableData> layoutTableData = this.getLayoutTableData(id);
             ArrayList<NoteTableData> noteTableData = this.getNoteTableData(id);
 
-            this.sdb = getWritableDatabase();
+            this.msdb = getWritableDatabase();
             //delete history of bed
             for(HistoryTableData tempHistoryTableData: historyTableData)
             {
@@ -694,111 +775,111 @@ public class DBHelper extends SQLiteOpenHelper {
                 this.removeNoteTableData(tempNoteTableData.getId());
             }
 
-            this.sdb.delete("bed", "_id =?", new String[] {""+id});
+            this.msdb.delete("bed", "_id =?", new String[]{"" + id});
             Log.d("Database", "bed Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeImageTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("image", "_id =?", new String[] {""+id});
+            this.msdb.delete("image", "_id =?", new String[]{"" + id});
             Log.d("Database","image Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeNoteTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("note", "_id =?", new String[] {""+id});
+            this.msdb.delete("note", "_id =?", new String[]{"" + id});
             Log.d("Database","note Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeLayoutTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("layout", "_id =?", new String[] {""+id});
+            this.msdb.delete("layout", "_id =?", new String[]{"" + id});
             Log.d("Database","layout Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeHistoryTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("history", "bedID =?", new String[] {""+id});
+            this.msdb.delete("history", "bedID =?", new String[]{"" + id});
             Log.d("Database","plant History Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removePlantHistoryTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("plant_history", "_id =?", new String[] {""+id});
+            this.msdb.delete("plant_history", "_id =?", new String[]{"" + id});
             Log.d("Database","plant History Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeHarvestHistoryTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("harvest_history", "_id =?", new String[] {""+id});
+            this.msdb.delete("harvest_history", "_id =?", new String[]{"" + id});
             Log.d("Database","harvest History Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 
     public void removeWorkHistoryTableData(int id)
     {
-        this.sdb = getWritableDatabase();
+        this.msdb = getWritableDatabase();
         try{
-            this.sdb.delete("work_history", "_id =?", new String[] {""+id});
+            this.msdb.delete("work_history", "_id =?", new String[]{"" + id});
             Log.d("Database","work History Deleted");
         }catch (SQLException e)
         {
             Log.d("Database error", e.getMessage());
         }
 
-        this.sdb.close();
+        this.msdb.close();
     }
 }
