@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
         //context.deleteDatabase(DATABASE_NAME);
-        Log.d("Database operations", "Database trying to be created");
+        Log.d("Database operations", "Constructor");
     }
 
 
@@ -166,14 +166,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setLayoutTableData(LayoutTableData layoutTableData) {
         try {
-            this.sdb = getWritableDatabase();
+            //this.sdb = getWritableDatabase();
+            SQLiteDatabase tempSDB = getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("image", layoutTableData.getImage());
             contentValues.put("bedID", layoutTableData.getBedID());
             this.sdb.insert("layout", null, contentValues);
 
-            this.sdb.close();
+            //this.sdb.close();
+            tempSDB.close();
         }catch(SQLException e){
             Log.d("Database, Layout add", e.getMessage());
         }
@@ -189,6 +191,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("note", noteTableData.getNote());
             contentValues.put("bedID", noteTableData.getBedID());
             contentValues.put("gardenID", noteTableData.getGardenID());
+            contentValues.put("alert", noteTableData.getAlert());
             this.sdb.insert("note", null, contentValues);
 
             this.sdb.close();
