@@ -1,5 +1,6 @@
 package dyly.bloomu.edu.gardenplannerapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -50,5 +51,10 @@ public class BedWorkHistoryActivity extends Fragment
                 R.layout.custom_bed_note, presentation_data);
         noteList.setAdapter(adapter);
         return rootView;
+    }
+    public void redirectToAddNewHistoryActivity(View view)
+    {
+        Intent intent = new Intent(getContext(), AddNewNoteActivity.class);
+        startActivity(intent);
     }
 }

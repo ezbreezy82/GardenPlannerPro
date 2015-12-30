@@ -56,7 +56,7 @@ public class BedHarvestHistoryActivity extends Fragment
         return rootView;
     }
 
-    public void redirectToAddNewNoteActivity(View view)
+    public void redirectToAddNewHistoryActivity(View view)
     {
         Intent intent = new Intent(getContext(), AddNewNoteActivity.class);
         startActivity(intent);

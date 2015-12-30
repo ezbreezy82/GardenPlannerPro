@@ -62,10 +62,10 @@ public class BedOptionsActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, BedHistoryActivity.class);
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
-        // get bed layouts
-        ArrayList<HistoryTableData> listOfBedTableData = (ArrayList<HistoryTableData>) getIntent().getSerializableExtra("HistoryTableData");
+        // get bed history objects
+        ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getPlantHistoryID()));
+        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getId()));
         intent.putExtra("BedID",listOfBedTableData.get(0).getId());
         startActivity(intent);
     }

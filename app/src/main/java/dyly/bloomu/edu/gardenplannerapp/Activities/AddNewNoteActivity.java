@@ -7,10 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.HarvestHistoryTableData;
 import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.NoteTableData;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.PlantHistoryTableData;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.WorkHistoryTableData;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
@@ -52,18 +56,28 @@ public class AddNewNoteActivity extends AppCompatActivity {
     {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
         NoteTableData noteTableData = new NoteTableData();
+        PlantHistoryTableData plantHistoryTableData = new PlantHistoryTableData();
+        HarvestHistoryTableData harvestHistoryTableData = new HarvestHistoryTableData();
+        WorkHistoryTableData workHistoryTableData = new WorkHistoryTableData();
+        //get content
         EditText subject = (EditText)findViewById(R.id.subject_edit_text);
         EditText note = (EditText) findViewById(R.id.note_edit_text);
+        RadioButton alert = (RadioButton) findViewById(R.id.alert_radio_button);
+        //determine if it is a note or some sort of history
 
 
+        //if note
         noteTableData.setSubject(subject.getText().toString());
         noteTableData.setNote(note.getText().toString());
+
         //check if its a bed or garden note
-
         noteTableData.setBedID(getIntent().getIntExtra("BedID",-1));
-        noteTableData.setAlert(0);
-
+        if(alert.isChecked())
+            noteTableData.setAlert(1);
+        else
+            noteTableData.setAlert(0);
         dbHelper.setNoteTableData(noteTableData);
+
         //Closes activity
         finish();
 

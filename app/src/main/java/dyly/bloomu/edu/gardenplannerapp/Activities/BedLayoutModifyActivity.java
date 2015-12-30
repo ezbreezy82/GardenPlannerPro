@@ -66,7 +66,7 @@ public class BedLayoutModifyActivity extends AppCompatActivity {
 
             //set attributes for saving the layout
             layoutTableData.setImage(byteArray);
-            layoutTableData.setBedID(getIntent().getIntExtra("BedId", -1));
+            layoutTableData.setBedID(getIntent().getIntExtra("BedID", -1));
 
             //save layout
             dbHelper.setLayoutTableData(layoutTableData);
