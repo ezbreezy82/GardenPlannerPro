@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Dyly on 11/4/15.
  */
 public class NoteTableData implements Serializable {
-    private int id, bedID, gardenID;
+    private int id, bedID, gardenID, alert;
     private Date date;
     private String subject, note;
 
@@ -23,10 +23,21 @@ public class NoteTableData implements Serializable {
         setDate(Calendar.getInstance().toString());
     }
 
-    public NoteTableData( String subject, String note, String date) {
+    public NoteTableData( String subject, String note, String date, int bedID, int gardenID, int alert) {
         this.subject = subject;
         this.note = note;
         setDate(date);
+        this.bedID = bedID;
+        this.gardenID = gardenID;
+        this.alert = alert;
+    }
+
+    public int getAlert() {
+        return alert;
+    }
+
+    public void setAlert(int alert) {
+        this.alert = alert;
     }
 
     public int getId() {
