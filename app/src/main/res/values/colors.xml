@@ -6,5 +6,6 @@
     <color name="bed_background">#ff7f3f00</color>
     <color name="view_background">#ffececec</color>
     <color name="text">#ccac00</color>
+    <color name="notes_header">#E0E0E0</color>
 
 </resources>

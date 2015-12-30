@@ -1,0 +1,34 @@
+INSERT INTO garden(_id) VALUES(1);
+
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+INSERT INTO bed(gardenID) VALUES(1);
+
+

@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/view_background"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.BedImagesActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.Activities.BedImagesActivity">
 
     <Button
         android:id="@+id/add_image_button"

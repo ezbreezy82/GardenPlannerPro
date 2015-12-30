@@ -2,35 +2,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/view_background"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/view_background"
-    android:orientation="vertical"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.BUOCActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.Activities.BUOCActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/under_construction" />
 
-    <Button
-        android:id="@+id/bed_one"
-        android:layout_width="50dp"
-        android:layout_height="125dp"
-        android:background="@color/bed_background"
-        android:onClick="redirectToBedOneOptions"
-        android:text="1"
-        android:textColor="@color/text"/>
+    <ScrollView
+        android:id="@+id/garden"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/garden_layout">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/center_button"
-        android:padding="20dp"
-        android:onClick="redirectToAddNewNoteActivity"
-        android:text="Add Note"
-        android:textColor="@color/text"/>
+        <LinearLayout
+            android:id="@+id/gardenLayoutLinear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Garden Layout 1"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/noteHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_background_color"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="redirectToGardenNotesActivity"
+                android:text="Notes"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+
+            <ListView
+                android:id="@+id/gardenNotePreviewList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/noteHeader" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>

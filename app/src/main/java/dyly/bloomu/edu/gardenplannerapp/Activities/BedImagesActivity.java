@@ -1,10 +1,9 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +14,8 @@ import android.widget.Button;
 
 import java.io.File;
 import java.io.IOException;
+
+import dyly.bloomu.edu.gardenplannerapp.R;
 
 
 public class BedImagesActivity extends AppCompatActivity {

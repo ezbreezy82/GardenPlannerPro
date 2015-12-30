@@ -1,21 +1,29 @@
-package dyly.bloomu.edu.gardenplannerapp;
+package dyly.bloomu.edu.gardenplannerapp.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
+import dyly.bloomu.edu.gardenplannerapp.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    SQLiteDatabase mydatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+         mydatabase = openOrCreateDatabase(dbHelper.getDatabaseName(),MODE_PRIVATE,null);
     }
 
     @Override
@@ -40,10 +48,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mydatabase.close();
+        Log.d("OnDestroy", "Database Closed");
+    }
+
     public void redirectToBUOCActivity(View view)
     {
 
         Intent intent = new Intent(this, BUOCActivity.class);
+        //set the garden ID so you can access the beds on the next page
+        intent.putExtra("gardenID", 1);
         startActivity(intent);
 
     }

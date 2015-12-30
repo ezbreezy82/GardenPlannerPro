@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/customNoteLayout"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/subject"
+        android:text="This is a subject line that will be entered!"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_weight="1" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeStamp"
+        android:text="11/02/2015 10:37PM"
+        android:layout_weight="3"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:id="@+id/noteControls"
+        />
+
+</LinearLayout>

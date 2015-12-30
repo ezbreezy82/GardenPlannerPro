@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/view_background"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.AddNewNoteActivity">
+    tools:context="dyly.bloomu.edu.gardenplannerapp.Activities.AddNewNoteActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         />
 
     <EditText
-        android:id="@+id/subjec_edit_text"
+        android:id="@+id/subject_edit_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         />
@@ -33,11 +33,22 @@
         android:background="@color/theme_background_color"
         />
     <EditText
-        android:id="@+id/note_tv"
+        android:id="@+id/note_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alert"
+        android:textColor="@color/text"
+        />
+
+    <RadioButton
+        android:id="@+id/alert_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +57,7 @@
         android:text="Save"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/text"
+        android:onClick="onSave"
         />
 
 </LinearLayout>

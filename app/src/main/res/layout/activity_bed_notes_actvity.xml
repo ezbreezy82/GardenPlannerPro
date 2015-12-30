@@ -1,5 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -7,19 +8,35 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/view_background"
-    tools:context="dyly.bloomu.edu.gardenplannerapp.BedNotesActvity">
+    android:orientation="vertical"
+    tools:context="dyly.bloomu.edu.gardenplannerapp.Activities.BedNotesActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/under_construction" />
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/center_button"
-        android:text="Add new note"
-        android:textColor="@color/text"
-        android:onClick="redirectToAddNewNoteActivity"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:id="@+id/noteList"/>
 
-</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/theme_background_color"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@android:color/white"
+            android:id="@+id/addNote"
+            android:layout_gravity="bottom|end"
+            android:onClick="redirectToAddNewNoteActivity"
+            app:layout_anchor="@id/noteList"
+            app:layout_anchorGravity="bottom|right|end"
+            />
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+</LinearLayout>

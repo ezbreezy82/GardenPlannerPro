@@ -1,0 +1,80 @@
+﻿Merge branch 'pr/4'
+
+# Conflicts:
+#	app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/HistoryTableData.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .idea/misc.xml
+#	modified:   .idea/vcs.xml
+#	modified:   app/src/main/AndroidManifest.xml
+#	new file:   app/src/main/assets/SQLscript/create_tables.sql
+#	new file:   app/src/main/assets/SQLscript/insert_beds.sql
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/AboutAppActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/AboutAppActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/AddNewImageActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/AddNewImageActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/AddNewNoteActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/AddNewNoteActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BUOCActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BUOCActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedHarvestHistoryActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedHarvestHistoryActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedHistoryActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedHistoryActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedHistoryPageAdapter.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedHistoryPageAdapter.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedImagesActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedImagesActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedLayoutActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedLayoutActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedNotesActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedNotesActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedOptionsActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedOptionsActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedPlantHistoryActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedPlantHistoryActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedWorkHistoryActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/BedWorkHistoryActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/CustomBedNoteActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/CustomBedNoteActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/CustomBedNotesHeader.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/CustomBedNotesHeader.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/GardenNotesActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/GardenNotesActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/MainActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/MainActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/SupportActivity.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Activities/SupportActivity.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedLayoutNoteListAdapter.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Adapters/BedLayoutNoteListAdapter.java
+#	deleted:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/BedTableData.java
+#	deleted:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/DBHelper.java
+#	new file:   app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/DBHelper.java
+#	new file:   app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/BedTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/GardenTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/GardenTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/HarvestHistoryTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/HarvestHistoryTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/HistoryTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/HistoryTableData.java
+#	new file:   app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/ImageTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/LayoutTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/LayoutTableData.java
+#	new file:   app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/NoteTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/PlantHistoryTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/PlantHistoryTableData.java
+#	renamed:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/WorkHistoryTableData.java -> app/src/main/java/dyly/bloomu/edu/gardenplannerapp/Database/Database_Objects/WorkHistoryTableData.java
+#	deleted:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/ImageTableData.java
+#	deleted:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/NoteTableData.java
+#	deleted:    app/src/main/java/dyly/bloomu/edu/gardenplannerapp/createTables.sql
+#	modified:   app/src/main/res/layout/activity_about_app.xml
+#	modified:   app/src/main/res/layout/activity_add_new_image.xml
+#	modified:   app/src/main/res/layout/activity_add_new_note.xml
+#	modified:   app/src/main/res/layout/activity_bed_history.xml
+#	modified:   app/src/main/res/layout/activity_bed_images.xml
+#	modified:   app/src/main/res/layout/activity_bed_layout.xml
+#	modified:   app/src/main/res/layout/activity_bed_notes_actvity.xml
+#	modified:   app/src/main/res/layout/activity_buoc.xml
+#	modified:   app/src/main/res/layout/activity_garden_notes.xml
+#	modified:   app/src/main/res/layout/activity_support.xml
+#	modified:   app/src/main/res/menu/menu_add_new_image.xml
+#	modified:   app/src/main/res/menu/menu_add_new_note.xml
+#	modified:   app/src/main/res/menu/menu_bed_history.xml
+#	modified:   app/src/main/res/menu/menu_bed_images.xml
+#	modified:   app/src/main/res/menu/menu_bed_layout.xml
+#	modified:   app/src/main/res/menu/menu_bed_notes_actvity.xml
+#	modified:   app/src/main/res/menu/menu_bed_options.xml
+#
+# Changes not staged for commit:
+#	modified:   GardenPlannerPro.iml
+#
+
