@@ -143,6 +143,13 @@ public class CustomBedLayoutCanvas extends View
         return true;
     }
 
+    public Bitmap getmBitmap() {
+        return mBitmap;
+    }
+
+    public void setmBitmap(Bitmap mBitmap) {
+        this.mBitmap = mBitmap;
+    }
 }
 
 

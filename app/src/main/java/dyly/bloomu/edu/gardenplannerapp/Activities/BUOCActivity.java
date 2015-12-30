@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import dyly.bloomu.edu.gardenplannerapp.Adapters.GardenLayoutNotePreviewListAdapter;
 import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
 import dyly.bloomu.edu.gardenplannerapp.Database.DBHelper;
@@ -25,8 +27,6 @@ public class BUOCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
-        //BedTableData bedTableData = new BedTableData(1,1,1,1);
-        //dbHelper.setBedTableData(bedTableData);
 
         setContentView(R.layout.activity_buoc);
 

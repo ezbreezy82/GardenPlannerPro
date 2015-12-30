@@ -7,15 +7,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.BedTableData;
+import dyly.bloomu.edu.gardenplannerapp.Database.Database_Objects.LayoutTableData;
 import dyly.bloomu.edu.gardenplannerapp.R;
 
 
 public class BedLayoutActivity extends AppCompatActivity {
 
+    private int bedId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_layout);
+
+        //check to see if there are any layouts
+        ArrayList<LayoutTableData> listOfLayoutTableData = (ArrayList <LayoutTableData>) getIntent().getSerializableExtra("LayoutTableData");
+        if(listOfLayoutTableData.size() > 0){
+            //fill the canvas with the bit map
+        }
+
+        bedId = getIntent().getIntExtra("BedId",-1);
     }
 
     @Override
@@ -46,6 +59,8 @@ public class BedLayoutActivity extends AppCompatActivity {
 
     public void redirectToBedLayoutModifyActivity(MenuItem item) {
         Intent intent = new Intent(this, BedLayoutModifyActivity.class);
+
+        intent.putExtra("BedId", bedId);
         startActivity(intent);
     }
 }

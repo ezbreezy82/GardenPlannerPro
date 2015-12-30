@@ -3,6 +3,7 @@ package dyly.bloomu.edu.gardenplannerapp.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,10 @@ public class BedNotesActivity extends AppCompatActivity implements AdapterView.O
         View header = getLayoutInflater().inflate(R.layout.custom_notes_header, null);
         final ListView noteList = (ListView) findViewById(R.id.noteList);
         noteList.addHeaderView(header, null, false);
+
+        //get the notes from this bed
+
+
 
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         Note presentation_data[] = null;
@@ -86,6 +91,9 @@ public class BedNotesActivity extends AppCompatActivity implements AdapterView.O
     public void redirectToAddNewNoteActivity(View view)
     {
         Intent intent = new Intent(this, AddNewNoteActivity.class);
+        if(getIntent().getIntExtra("BedID",-1) == -1)
+            Log.d("Bed ID error", "Bed ID is -1");
+        intent.putExtra("BedID", getIntent().getIntExtra("BedID",-1));
         startActivity(intent);
     }
 

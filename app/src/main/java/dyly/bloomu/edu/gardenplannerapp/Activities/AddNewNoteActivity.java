@@ -58,6 +58,10 @@ public class AddNewNoteActivity extends AppCompatActivity {
 
         noteTableData.setSubject(subject.getText().toString());
         noteTableData.setNote(note.getText().toString());
+        //check if its a bed or garden note
+
+        noteTableData.setBedID(getIntent().getIntExtra("BedID",-1));
+        noteTableData.setAlert(0);
 
         dbHelper.setNoteTableData(noteTableData);
         //Closes activity

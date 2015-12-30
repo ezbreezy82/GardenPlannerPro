@@ -52,7 +52,9 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        //intent.putExtra("LayoutTableData", dbHelper.getLayoutTableData(listOfBedTableData.get(0).getId()));
+        intent.putExtra("LayoutTableData", dbHelper.getLayoutTableData(listOfBedTableData.get(0).getId()));
+        //just incase there are no layouts send the bed id too
+        intent.putExtra("BedID",listOfBedTableData.get(0).getId());
         startActivity(intent);
     }
 
@@ -63,7 +65,8 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<HistoryTableData> listOfBedTableData = (ArrayList<HistoryTableData>) getIntent().getSerializableExtra("HistoryTableData");
 
-        //intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getPlantHistoryID()));
+        intent.putExtra("HistoryTableData", dbHelper.getHistoryTableData(listOfBedTableData.get(0).getPlantHistoryID()));
+        intent.putExtra("BedID",listOfBedTableData.get(0).getId());
         startActivity(intent);
     }
 
@@ -76,7 +79,8 @@ public class BedOptionsActivity extends AppCompatActivity {
 
         // a little help to tell if its from garden layout or bed options page
         //intent.putExtra("BedorGarden", 1);
-        //intent.putExtra("NotesTableData", dbHelper.getNoteTableData(listOfBedTableData.get(0).getId()));
+        intent.putExtra("NotesTableData", dbHelper.getNoteTableData(listOfBedTableData.get(0).getId()));
+        intent.putExtra("BedID",listOfBedTableData.get(0).getId());
         startActivity(intent);
     }
 
@@ -87,7 +91,8 @@ public class BedOptionsActivity extends AppCompatActivity {
         // get bed layouts
         ArrayList<BedTableData> listOfBedTableData = (ArrayList<BedTableData>) getIntent().getSerializableExtra("BedTableData");
 
-        //intent.putExtra("LayoutTableData", dbHelper.getImageTableData(listOfBedTableData.get(0).getId()));
+        intent.putExtra("ImageTableData", dbHelper.getImageTableData(listOfBedTableData.get(0).getId()));
+        intent.putExtra("BedID",listOfBedTableData.get(0).getId());
         startActivity(intent);
     }
 }
